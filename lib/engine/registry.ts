@@ -2,6 +2,40 @@ import type { ToolConfig, ToolCategory, ToolCategorySlug } from "@/types/tool";
 import { ageCalculatorTool } from "@/config/tools/age-calculator.config";
 import { jsonFormatterTool } from "@/config/tools/json-formatter.config";
 import { passwordGeneratorTool } from "@/config/tools/password-generator.config";
+import { emiCalculatorTool } from "@/config/tools/emi-calculator.config";
+import { gstCalculatorTool } from "@/config/tools/gst-calculator.config";
+import { percentageCalculatorTool } from "@/config/tools/percentage-calculator.config";
+import { discountCalculatorTool } from "@/config/tools/discount-calculator.config";
+import { profitCalculatorTool } from "@/config/tools/profit-calculator.config";
+import { marginCalculatorTool } from "@/config/tools/margin-calculator.config";
+import { bmiCalculatorTool } from "@/config/tools/bmi-calculator.config";
+import { loanCalculatorTool } from "@/config/tools/loan-calculator.config";
+import { timeCalculatorTool } from "@/config/tools/time-calculator.config";
+import { dateDifferenceTool } from "@/config/tools/date-difference.config";
+import { jsonValidatorTool } from "@/config/tools/json-validator.config";
+import { base64EncodeTool } from "@/config/tools/base64-encode.config";
+import { base64DecodeTool } from "@/config/tools/base64-decode.config";
+import { urlEncoderTool } from "@/config/tools/url-encoder.config";
+import { urlDecoderTool } from "@/config/tools/url-decoder.config";
+import { jwtDecoderTool } from "@/config/tools/jwt-decoder.config";
+import { jwtEncoderTool } from "@/config/tools/jwt-encoder.config";
+import { regexTesterTool } from "@/config/tools/regex-tester.config";
+import { uuidGeneratorTool } from "@/config/tools/uuid-generator.config";
+import { hashGeneratorTool } from "@/config/tools/hash-generator.config";
+import { htmlFormatterTool } from "@/config/tools/html-formatter.config";
+import { cssMinifierTool } from "@/config/tools/css-minifier.config";
+import { javascriptMinifierTool } from "@/config/tools/javascript-minifier.config";
+import { markdownPreviewTool } from "@/config/tools/markdown-preview.config";
+import { wordCounterTool } from "@/config/tools/word-counter.config";
+import { characterCounterTool } from "@/config/tools/character-counter.config";
+import { caseConverterTool } from "@/config/tools/case-converter.config";
+import { textCleanerTool } from "@/config/tools/text-cleaner.config";
+import { removeDuplicateLinesTool } from "@/config/tools/remove-duplicate-lines.config";
+import { slugGeneratorTool } from "@/config/tools/slug-generator.config";
+import { loremIpsumGeneratorTool } from "@/config/tools/lorem-ipsum.config";
+import { randomGeneratorTool } from "@/config/tools/random-generator.config";
+import { colorPickerTool } from "@/config/tools/color-picker.config";
+import { qrGeneratorTool } from "@/config/tools/qr-generator.config";
 
 /**
  * TOOL_REGISTRY is the only place new tools get wired in.
@@ -13,6 +47,40 @@ export const TOOL_REGISTRY: ToolConfig[] = [
   ageCalculatorTool,
   jsonFormatterTool,
   passwordGeneratorTool,
+  emiCalculatorTool,
+  gstCalculatorTool,
+  percentageCalculatorTool,
+  discountCalculatorTool,
+  profitCalculatorTool,
+  marginCalculatorTool,
+  bmiCalculatorTool,
+  loanCalculatorTool,
+  timeCalculatorTool,
+  dateDifferenceTool,
+  jsonValidatorTool,
+  base64EncodeTool,
+  base64DecodeTool,
+  urlEncoderTool,
+  urlDecoderTool,
+  jwtDecoderTool,
+  jwtEncoderTool,
+  regexTesterTool,
+  uuidGeneratorTool,
+  hashGeneratorTool,
+  htmlFormatterTool,
+  cssMinifierTool,
+  javascriptMinifierTool,
+  markdownPreviewTool,
+  wordCounterTool,
+  characterCounterTool,
+  caseConverterTool,
+  textCleanerTool,
+  removeDuplicateLinesTool,
+  slugGeneratorTool,
+  loremIpsumGeneratorTool,
+  randomGeneratorTool,
+  colorPickerTool,
+  qrGeneratorTool,
 ] as ToolConfig[];
 
 export const CATEGORY_REGISTRY: ToolCategory[] = [
