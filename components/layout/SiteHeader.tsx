@@ -32,6 +32,9 @@ export function SiteHeader() {
         </div>
 
         <nav className="hidden items-center gap-6 lg:flex">
+          <Link href="/agents" className="text-sm font-medium text-slate-600 transition hover:text-primary dark:text-slate-300">
+            AI Agents
+          </Link>
           {CATEGORY_REGISTRY.slice(0, 5).map((c) => (
             <Link
               key={c.slug}
