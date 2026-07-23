@@ -57,7 +57,7 @@ export const passwordGeneratorTool: ToolConfig<PasswordInput, PasswordOutput> = 
   title: "Password Generator",
   shortDescription: "Generate strong, random, cryptographically secure passwords instantly.",
   longDescription:
-    "The Password Generator uses your browser's cryptographically secure random number generator (crypto.getRandomValues) to produce unpredictable passwords. Choose the length and which character sets to include, and get an instant strength rating.",
+    "Weak, reused, or predictable passwords are one of the most common causes of account breaches -- and human-generated passwords are surprisingly easy to guess, even when they feel random to the person who made them. This generator produces genuinely random passwords using your browser's cryptographically secure random number generator (the Web Crypto API's crypto.getRandomValues), the same class of randomness used in security-sensitive applications.\n\nChoose your length (4 to 64 characters) and which character sets to include -- uppercase, lowercase, numbers, and symbols. Longer passwords with more character variety are exponentially harder to crack: a 16-character password using all four character sets has a vastly larger possible combination space than an 8-character password using only lowercase letters.\n\nEvery password is generated entirely in your browser and is never transmitted anywhere or logged, so it's safe to generate passwords for real accounts here.",
   category: "generators",
   icon: "KeyRound",
   isFeatured: true,
@@ -65,7 +65,7 @@ export const passwordGeneratorTool: ToolConfig<PasswordInput, PasswordOutput> = 
     metaTitle: "Password Generator - Create Strong Secure Passwords Free",
     metaDescription:
       "Generate strong, random, secure passwords online for free. Customize length and character types with instant strength rating.",
-    keywords: ["password generator", "strong password", "random password generator", "secure password"],
+    keywords: ["password generator", "strong password", "random password generator", "secure password", "password generator online", "create strong password"],
   },
   inputSchema: passwordInputSchema,
   compute: computePassword,
@@ -76,10 +76,9 @@ export const passwordGeneratorTool: ToolConfig<PasswordInput, PasswordOutput> = 
       answer:
         "Yes. Passwords are generated locally in your browser using the Web Crypto API's cryptographically secure random number generator, and are never sent to a server.",
     },
-    {
-      question: "What length should I use?",
-      answer: "For most accounts, 16 characters with all character types enabled gives a very strong password.",
-    },
+    { question: "What length should I use?", answer: "For most accounts, 16 characters with all character types enabled gives a very strong password. For highly sensitive accounts (password managers, financial accounts), consider 20+ characters." },
+    { question: "Should I use the same strong password everywhere?", answer: "No -- generate a unique password for every account. If one site is breached, a reused password lets attackers access your other accounts too. A password manager makes storing many unique passwords practical." },
+    { question: "Why include symbols if some sites don't allow them?", answer: "Symbols significantly increase the possible combinations for a given length. If a site rejects symbols, simply uncheck that option and regenerate -- the remaining character sets are still cryptographically random." },
   ],
   relatedToolSlugs: ["uuid-generator", "hash-generator"],
   exampleInput: { length: 16, includeUppercase: true, includeLowercase: true, includeNumbers: true, includeSymbols: true },

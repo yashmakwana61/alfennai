@@ -59,7 +59,7 @@ export const ageCalculatorTool: ToolConfig<AgeInput, AgeOutput> = {
   title: "Age Calculator",
   shortDescription: "Calculate your exact age in years, months and days from your date of birth.",
   longDescription:
-    "The Age Calculator computes your precise age by comparing your date of birth against today's date (or any custom date). It accounts for varying month lengths and leap years to give an exact breakdown in years, months and days, along with total days lived and days remaining until your next birthday.",
+    "Wondering exactly how old you are -- not just in years, but down to the month and day? This free age calculator gives you a precise breakdown instantly: enter your date of birth, and optionally a specific date to measure against, and it works out your exact age.\n\nUnlike simple \"subtract the birth year\" math, this calculator accounts for the actual number of days in each month and for leap years, so the result is genuinely accurate -- not an approximation. That matters for anything where exact age counts: eligibility checks, legal age verification, insurance forms, or just settling an argument about who's older.\n\nBeyond your age in years, months and days, you also get your total number of days lived, total weeks, and exactly how many days remain until your next birthday. All calculations happen instantly in your browser -- your birth date is never sent anywhere.",
   category: "calculators",
   icon: "Cake",
   isFeatured: true,
@@ -68,7 +68,7 @@ export const ageCalculatorTool: ToolConfig<AgeInput, AgeOutput> = {
     metaTitle: "Age Calculator - Calculate Your Exact Age Online Free",
     metaDescription:
       "Free online age calculator. Find your exact age in years, months and days from your date of birth instantly. Accurate and easy to use.",
-    keywords: ["age calculator", "calculate age", "date of birth calculator", "how old am i"],
+    keywords: ["age calculator", "calculate age", "date of birth calculator", "how old am i", "age calculator by date of birth", "exact age calculator"],
   },
   inputSchema: ageInputSchema,
   compute: computeAge,
@@ -90,7 +90,22 @@ export const ageCalculatorTool: ToolConfig<AgeInput, AgeOutput> = {
     {
       question: "Can I calculate age as of a specific date, not today?",
       answer:
-        "Yes. Enter a comparison date to see what your age was, or will be, on any specific day.",
+        "Yes. Enter a comparison date to see what your age was, or will be, on any specific day -- useful for figuring out age at a past event or a future eligibility date.",
+    },
+    {
+      question: "Why does my age in years differ from what I expected?",
+      answer:
+        "If your birthday hasn't occurred yet this year relative to the comparison date, your age in completed years is one less than the current calendar year minus your birth year. This calculator handles that adjustment automatically.",
+    },
+    {
+      question: "Does this account for leap years?",
+      answer:
+        "Yes. The calculation uses actual calendar dates (via JavaScript's native Date handling), so February 29th in leap years is counted correctly rather than assumed away.",
+    },
+    {
+      question: "Is my birth date stored or sent anywhere?",
+      answer:
+        "No. The calculation runs entirely in your browser using JavaScript -- your date of birth is never transmitted to a server or stored.",
     },
   ],
   relatedToolSlugs: ["date-difference", "time-calculator"],

@@ -43,7 +43,9 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
       {/* How it works / long description */}
       <section className="mt-12 space-y-4">
         <h2 className="text-xl font-semibold text-slate-900 dark:text-white">How it works</h2>
-        <p className="leading-relaxed text-slate-600 dark:text-slate-300">{tool.longDescription}</p>
+        {tool.longDescription.split("\n\n").map((paragraph, i) => (
+          <p key={i} className="leading-relaxed text-slate-600 dark:text-slate-300">{paragraph}</p>
+        ))}
       </section>
 
       <div className="mt-10">

@@ -31,7 +31,7 @@ export const percentageCalculatorTool: ToolConfig<PercentageInput, PercentageOut
   title: "Percentage Calculator",
   shortDescription: "Calculate percentages, percentage of a number, and percentage change.",
   longDescription:
-    "The Percentage Calculator handles the three most common percentage problems: finding X% of a number, figuring out what percent one number is of another, and computing percentage increase or decrease between two values.",
+    "Percentages come up constantly -- working out a discount, checking exam scores, comparing growth between two periods -- but the three common percentage problems each use a different formula, which is where most manual calculation mistakes happen. This calculator handles all three in one place.\n\n\"X% of Y\" answers questions like \"what is 20% of 150?\" -- useful for tips, discounts, and commission. \"X is what percent of Y\" flips that around: if you scored 42 out of 60, what percentage is that? And \"percentage change\" tells you the percent increase or decrease between an original value and a new one -- the calculation behind revenue growth, price changes, or year-over-year comparisons.\n\nJust select the calculation type, enter your two numbers, and get an instant, exact result -- no need to remember which formula applies to which situation.",
   category: "calculators",
   icon: "Percent",
   isFeatured: true,
@@ -39,13 +39,16 @@ export const percentageCalculatorTool: ToolConfig<PercentageInput, PercentageOut
   seo: {
     metaTitle: "Percentage Calculator - Free Online Percent Calculator",
     metaDescription: "Free percentage calculator. Find X% of Y, what percent X is of Y, and percentage change instantly.",
-    keywords: ["percentage calculator", "percent calculator", "percentage change calculator"],
+    keywords: ["percentage calculator", "percent calculator", "percentage change calculator", "percentage increase calculator", "what percent of"],
   },
   inputSchema: schema,
   compute,
   component: PercentageCalculator,
   faq: [
     { question: "How do I calculate percentage increase?", answer: "Use the 'percentage change' mode: enter the original value as X and the new value as Y. A positive result is an increase, negative is a decrease." },
+    { question: "What's the formula for 'X is what percent of Y'?", answer: "Divide X by Y and multiply by 100: (X / Y) × 100. For example, 42 out of 60 is (42/60) × 100 = 70%." },
+    { question: "How do I find 20% of a number?", answer: "Use 'X% of Y' mode with X = 20 and Y = your number. The formula is (20/100) × Y." },
+    { question: "Why is percentage change based on the original value, not the average?", answer: "Percentage change measures relative movement from a starting point, so it's always calculated against the original (X) value, not an average of the two -- this is the standard convention used in finance and statistics." },
   ],
   relatedToolSlugs: ["discount-calculator", "gst-calculator"],
   exampleInput: { mode: "of", x: 20, y: 150 },
