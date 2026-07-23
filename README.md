@@ -61,6 +61,31 @@ npm run dev
   npm registry for a full `next build` in this environment). Recommend running `npm run
   typecheck` and `npm run build` locally before deploying.
 
+## Connecting Google AdSense
+
+1. Apply at [adsense.google.com](https://www.google.com/adsense) with your live domain.
+2. Once approved, AdSense gives you a publisher ID (`pub-XXXXXXXXXXXXXXXX`) and an `ads.txt` line.
+   Put that line in `public/ads.txt` (replacing the placeholder comment there).
+3. Uncomment the AdSense loader `<script>` in `app/layout.tsx` `<head>` and fill in your real
+   publisher ID.
+4. Ad placements are already reserved as `<AdSlot />` components (top banner, inline, footer) in
+   `app/page.tsx`, `components/tools/ToolPageLayout.tsx`, and `components/layout/SiteFooter.tsx`
+   -- each has a fixed `minHeight` so a loading ad won't shift surrounding content (no CLS).
+   Replace the placeholder `<div>` inside `AdSlot` (`components/ads/AdSlot.tsx`) with your real
+   `<ins className="adsbygoogle">` unit once you're generating ad units in AdSense, keeping the
+   same wrapper height.
+
+## What's still needed for AdSense approval
+
+- Replace the placeholder email in `app/contact/page.tsx` with a real one you monitor
+- Review `app/privacy/page.tsx` and `app/terms/page.tsx` -- these are solid starting boilerplate
+  but you may want a lawyer's pass before relying on them, especially the liability/warranty
+  language in Terms
+- AdSense wants genuine, substantial content and real traffic -- a brand-new domain with no
+  visitors yet may take longer to get approved regardless of content quality
+
+
+
 ## Recommended next step
 
 Given the size of this (multi-week, many files, ongoing iteration), this project is a much

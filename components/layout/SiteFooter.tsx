@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { CATEGORY_REGISTRY, TOOL_REGISTRY } from "@/lib/engine/registry";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export function SiteFooter() {
   const popularTools = TOOL_REGISTRY.slice(0, 6);
 
   return (
     <footer className="mt-24 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
+      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
+        <AdSlot label="Footer ad" minHeight={90} />
+      </div>
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
           <p className="text-sm font-semibold text-slate-900 dark:text-white">Company</p>

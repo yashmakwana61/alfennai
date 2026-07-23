@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { ToolConfig, ToolCategory } from "@/types/tool";
 import { ToolRuntime } from "@/components/tools/ToolRuntime";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 interface Props {
   tool: ToolConfig;
@@ -44,6 +45,10 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
         <h2 className="text-xl font-semibold text-slate-900 dark:text-white">How it works</h2>
         <p className="leading-relaxed text-slate-600 dark:text-slate-300">{tool.longDescription}</p>
       </section>
+
+      <div className="mt-10">
+        <AdSlot label="Inline ad" minHeight={120} />
+      </div>
 
       {/* Formulas */}
       {tool.formulas && tool.formulas.length > 0 && (

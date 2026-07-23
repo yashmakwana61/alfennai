@@ -1,6 +1,7 @@
 import Link from "next/link";
 import * as Icons from "lucide-react";
 import { CATEGORY_REGISTRY, getFeaturedTools, getTrendingTools } from "@/lib/engine/registry";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export default function HomePage() {
   const featured = getFeaturedTools();
@@ -30,6 +31,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AdSlot label="Top banner ad" minHeight={90} />
+      </div>
+
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Popular categories</h2>
@@ -54,6 +59,11 @@ export default function HomePage() {
 
       {/* Featured tools */}
       <ToolGrid title="Featured tools" tools={featured} />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AdSlot label="Inline ad" minHeight={120} />
+      </div>
+
       <ToolGrid title="Trending now" tools={trending} />
 
       {/* FAQ */}
