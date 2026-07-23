@@ -27,17 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
-        {/*
-          Once your AdSense account is approved, uncomment this script and
-          replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID (find
-          it in AdSense under Account > Settings). This must be present on
-          every page for ads to render in any AdSlot.
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-            crossOrigin="anonymous"
-          />
-        */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353643107968420"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${inter.variable} font-sans`}>
         <SiteHeader />

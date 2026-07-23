@@ -1,5 +1,1 @@
-# AdSense will give you a line like this once your account is approved:
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-#
-# Replace the line below with your real one (find it in AdSense under
-# Sites > your domain > "View ads.txt guidance"), then redeploy.
+google.com, pub-9353643107968420, DIRECT, f08c47fec0942fa0
