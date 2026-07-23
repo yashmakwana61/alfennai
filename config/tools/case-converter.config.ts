@@ -18,12 +18,12 @@ function compute(input: CaseConverterInput): CaseConverterOutput {
   switch (input.targetCase) {
     case "upper": return { converted: input.text.toUpperCase() };
     case "lower": return { converted: input.text.toLowerCase() };
-    case "title": return { converted: w.map((x) => x[0].toUpperCase() + x.slice(1).toLowerCase()).join(" ") };
+    case "title": return { converted: w.map((x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase()).join(" ") };
     case "sentence": {
       const lower = input.text.toLowerCase();
       return { converted: lower.charAt(0).toUpperCase() + lower.slice(1) };
     }
-    case "camel": return { converted: w.map((x, i) => (i === 0 ? x.toLowerCase() : x[0].toUpperCase() + x.slice(1).toLowerCase())).join("") };
+    case "camel": return { converted: w.map((x, i) => (i === 0 ? x.toLowerCase() : x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())).join("") };
     case "snake": return { converted: w.map((x) => x.toLowerCase()).join("_") };
     case "kebab": return { converted: w.map((x) => x.toLowerCase()).join("-") };
   }
