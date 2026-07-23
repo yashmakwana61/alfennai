@@ -35,7 +35,7 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Popular categories</h2>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {CATEGORY_REGISTRY.map((category) => {
-            const Icon = (Icons as Record<string, Icons.LucideIcon>)[category.icon] ?? Icons.Wrench;
+            const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[category.icon] ?? Icons.Wrench;
             return (
               <Link
                 key={category.slug}
@@ -101,7 +101,7 @@ function ToolGrid({ title, tools }: { title: string; tools: ReturnType<typeof ge
       <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">{title}</h2>
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => {
-          const Icon = (Icons as Record<string, Icons.LucideIcon>)[tool.icon] ?? Icons.Wrench;
+          const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[tool.icon] ?? Icons.Wrench;
           return (
             <Link
               key={tool.slug}
