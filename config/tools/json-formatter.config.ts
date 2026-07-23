@@ -4,7 +4,7 @@ import { JsonFormatter } from "@/components/tools/JsonFormatter";
 
 const jsonInputSchema = z.object({
   raw: z.string().min(1, "Enter some JSON to format"),
-  indent: z.number().min(0).max(8).default(2),
+  indent: z.number().min(0).max(8),
 });
 
 export type JsonInput = z.infer<typeof jsonInputSchema>;

@@ -3,11 +3,11 @@ import type { ToolConfig } from "@/types/tool";
 import { PasswordGenerator } from "@/components/tools/PasswordGenerator";
 
 const passwordInputSchema = z.object({
-  length: z.number().min(4).max(128).default(16),
-  includeUppercase: z.boolean().default(true),
-  includeLowercase: z.boolean().default(true),
-  includeNumbers: z.boolean().default(true),
-  includeSymbols: z.boolean().default(true),
+  length: z.number().min(4).max(128),
+  includeUppercase: z.boolean(),
+  includeLowercase: z.boolean(),
+  includeNumbers: z.boolean(),
+  includeSymbols: z.boolean(),
 });
 
 export type PasswordInput = z.infer<typeof passwordInputSchema>;
