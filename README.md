@@ -25,12 +25,16 @@ not a mock. Everything below runs.
 
 ## How to add tool #4 (and #5, #6... #100,000)
 
-1. Create `config/tools/your-tool.config.ts` following the pattern in the 3 existing configs:
+1. Create `config/tools/your-tool.config.ts` following the pattern in the existing configs:
    Zod input schema, `compute()` function, SEO block, FAQ, related tool slugs.
 2. Create `components/tools/YourTool.tsx`: the interactive UI, reading `tool.inputSchema` and
    `tool.compute` from the config passed as a prop.
-3. Add one import + one line to `TOOL_REGISTRY` in `lib/engine/registry.ts`.
-4. Nothing else changes. The page, SEO, sitemap, and related-tools links are automatic.
+3. Add one import + one line to `TOOL_REGISTRY` in `lib/engine/registry.ts` (drives routing,
+   SEO, sitemap, related tools).
+4. Add one line to `TOOL_LOADERS` in `components/tools/ToolRuntime.tsx` (drives the client-side
+   dynamic import -- kept as an explicit map rather than a single templated import() so webpack
+   always code-splits it correctly).
+5. Nothing else changes.
 
 This is the actual scaling mechanism for going from 3 → 37 → 1,000 → 100,000 tools: the
 per-tool marginal cost is one config file + one component, and architecture never changes.
