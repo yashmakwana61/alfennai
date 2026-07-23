@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { ToolConfig, ToolCategory } from "@/types/tool";
+import { ToolRuntime } from "@/components/tools/ToolRuntime";
 
 interface Props {
   tool: ToolConfig;
@@ -9,8 +10,6 @@ interface Props {
 }
 
 export function ToolPageLayout({ tool, category, relatedTools }: Props) {
-  const ToolComponent = tool.component;
-
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Breadcrumbs */}
@@ -37,7 +36,7 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
         aria-label={`${tool.title} tool`}
         className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 sm:p-8"
       >
-        <ToolComponent tool={tool} />
+        <ToolRuntime slug={tool.slug} />
       </section>
 
       {/* How it works / long description */}
