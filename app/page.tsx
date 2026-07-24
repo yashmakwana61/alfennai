@@ -1,11 +1,13 @@
 import Link from "next/link";
 import * as Icons from "lucide-react";
 import { CATEGORY_REGISTRY, getFeaturedTools, getTrendingTools } from "@/lib/engine/registry";
+import { getFeaturedAgents } from "@/lib/engine/agent-registry";
 import { AdSlot } from "@/components/ads/AdSlot";
 
 export default function HomePage() {
   const featured = getFeaturedTools();
   const trending = getTrendingTools();
+  const featuredAgents = getFeaturedAgents();
 
   return (
     <main>
@@ -54,6 +56,30 @@ export default function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* AI Agents */}
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Free AI Agents & n8n Workflows</h2>
+          <Link href="/agents" className="text-sm font-medium text-primary hover:underline">View all →</Link>
+        </div>
+        <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-300">
+          Industry-specific AI agent prompts with a ready-to-import n8n workflow -- download the
+          prompt, download the workflow, plug in your own credentials.
+        </p>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredAgents.map((agent) => (
+            <Link
+              key={agent.slug}
+              href={`/agents/${agent.industry}/${agent.slug}`}
+              className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+            >
+              <p className="font-medium text-slate-900 dark:text-white">{agent.title}</p>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{agent.shortDescription}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

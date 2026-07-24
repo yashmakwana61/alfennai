@@ -66,6 +66,9 @@ export function SiteHeader() {
 
       {mobileOpen && (
         <div className="border-t border-slate-200 px-4 py-3 lg:hidden dark:border-slate-800">
+          <Link href="/agents" className="block py-2 text-sm font-medium text-primary">
+            AI Agents
+          </Link>
           {CATEGORY_REGISTRY.map((c) => (
             <Link key={c.slug} href={`/tools/${c.slug}`} className="block py-2 text-sm text-slate-600 dark:text-slate-300">
               {c.name}
