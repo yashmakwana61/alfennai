@@ -23,7 +23,7 @@ export const orderSupportAgent: AgentConfig = {
   compatibleWith: ["n8n", "Make.com", "ChatGPT", "Claude"],
   seo: {
     metaTitle: "Order Status Support AI Agent - Free n8n Workflow",
-    metaDescription: "Free AI agent that instantly answers 'where is my order' questions over WhatsApp using real order data, and escalates anything else to a human. Includes n8n workflow.",
+    metaDescription: "Free AI agent that instantly answers 'where is my order' questions over WhatsApp using real order data, escalating anything else to a human.",
     keywords: ["ai order status agent", "whatsapp customer support automation", "n8n ecommerce support workflow", "where is my order ai bot"],
   },
   faq: [

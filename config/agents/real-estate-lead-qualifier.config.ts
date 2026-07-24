@@ -23,7 +23,7 @@ export const leadQualifierAgent: AgentConfig = {
   compatibleWith: ["n8n", "Make.com", "ChatGPT", "Claude"],
   seo: {
     metaTitle: "Real Estate Lead Qualifier AI Agent - Free n8n Workflow",
-    metaDescription: "Download a free AI agent + n8n workflow that automatically qualifies real estate leads by budget and timeline, and routes hot leads to your CRM and Slack instantly.",
+    metaDescription: "Free AI agent + n8n workflow that qualifies real estate leads by budget and timeline, routing hot leads to your CRM and Slack instantly.",
     keywords: ["real estate ai agent", "lead qualification automation", "n8n real estate workflow", "ai lead scoring real estate"],
   },
   faq: [
