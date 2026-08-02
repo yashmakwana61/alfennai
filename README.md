@@ -61,6 +61,17 @@ npm run dev
   npm registry for a full `next build` in this environment). Recommend running `npm run
   typecheck` and `npm run build` locally before deploying.
 
+## Deployment
+
+Hosted on Vercel (migrated from Hostinger). Vercel builds via `next build` and serves the app
+through its own runtime -- no custom server needed, and `npm run start` / `server.js` from earlier
+Hostinger-specific setup no longer apply.
+
+If the GitHub repo is connected to Vercel (Vercel dashboard > Import Project), every push to `main`
+auto-deploys. Set `NEXT_PUBLIC_SITE_URL=https://alfennai.com` (or your actual production domain) as
+an Environment Variable in the Vercel project settings -- this feeds `seo/metadata.ts`'s canonical
+URLs, sitemap, and OpenGraph tags.
+
 ## Connecting Google AdSense
 
 1. Apply at [adsense.google.com](https://www.google.com/adsense) with your live domain.

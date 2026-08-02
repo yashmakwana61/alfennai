@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx scripts/seo-audit.ts"
