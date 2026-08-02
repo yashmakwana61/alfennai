@@ -16,18 +16,23 @@ export const urlEncoderTool: ToolConfig<UrlEncoderInput, UrlEncoderOutput> = {
   title: "URL Encoder",
   shortDescription: "Percent-encode text and URLs for safe use in query strings and links.",
   longDescription:
-    "The URL Encoder converts special characters, spaces and Unicode text into percent-encoded form (application/x-www-form-urlencoded style via encodeURIComponent), so the result is safe to embed in a URL query string.",
+    "URLs can only safely contain a limited set of characters -- spaces, ampersands, question marks and many others have special meaning or aren't allowed raw, which is why they need percent-encoding (e.g. a space becomes %20) before being placed in a query string or link. Get this wrong and a URL parameter can silently truncate, merge with another parameter, or break entirely.\n\nThis tool encodes using encodeURIComponent, the correct choice for encoding individual values that will be placed inside a URL -- as opposed to encoding an entire URL at once, which needs different handling since it must preserve characters like : and / that are structurally meaningful.\n\nWorks with full Unicode text too, so non-English characters, emoji, and special symbols all encode correctly for safe transmission in any URL.",
   category: "developer-tools",
   icon: "Link",
   seo: {
     metaTitle: "URL Encoder - Percent Encode URLs Free",
     metaDescription: "Free URL encoder. Percent-encode text and URLs for safe use in query strings and links.",
-    keywords: ["url encoder", "percent encoding", "uri encode"],
+    keywords: ["url encoder", "percent encoding", "uri encode", "url encode online", "encodeuricomponent"],
   },
   inputSchema: schema,
   compute,
   component: UrlEncoder,
-  faq: [{ question: "What's the difference from encodeURI?", answer: "This uses encodeURIComponent, which also escapes characters like &, = and ? — correct for encoding individual query parameter values rather than a full URL." }],
+  faq: [
+    { question: "What's the difference from encodeURI?", answer: "This uses encodeURIComponent, which also escapes characters like &, = and ? -- correct for encoding individual query parameter values rather than a full URL, where those characters are structurally meaningful." },
+    { question: "Why do spaces become %20?", answer: "Spaces aren't valid in URLs, so they're percent-encoded as their ASCII hex value (20 in hex = 32 decimal, the space character's code point)." },
+    { question: "Do I need to encode an entire URL, or just parts of it?", answer: "Usually just the values going into query parameters, not the whole URL -- encoding the full URL would also escape the protocol separators and slashes that need to stay intact." },
+    { question: "Does this work for non-English text?", answer: "Yes -- any Unicode character gets correctly percent-encoded as its UTF-8 byte sequence." },
+  ],
   relatedToolSlugs: ["url-decoder", "base64-encode"],
   exampleInput: { raw: "https://example.com/search?q=hello world" },
 };

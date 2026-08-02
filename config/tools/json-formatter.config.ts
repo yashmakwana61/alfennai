@@ -34,7 +34,7 @@ export const jsonFormatterTool: ToolConfig<JsonInput, JsonOutput> = {
   title: "JSON Formatter",
   shortDescription: "Format, validate and beautify JSON instantly with syntax highlighting.",
   longDescription:
-    "The JSON Formatter parses your raw JSON, validates its structure, and re-serializes it with consistent, readable indentation. If the JSON is malformed, it surfaces the exact parse error so you can find and fix the problem quickly.",
+    "Malformed JSON is one of the most common causes of broken API integrations, and the error messages browsers and languages give you are often unhelpful -- a vague \"unexpected token\" with no context. This formatter parses your raw JSON, and if it's valid, re-serializes it with clean, consistent indentation so nested objects and arrays are actually readable.\n\nIf the JSON is invalid, you get the exact parser error rather than a guess, so you can find the missing comma or unclosed bracket quickly. Choose 2-space, 4-space, or fully minified output depending on whether you're reading the JSON yourself or shipping it over the wire.\n\nEverything runs in your browser using the native JSON.parse/stringify, so nothing you paste in is ever sent to a server -- safe to use even with real API responses or config files you'd rather not upload anywhere.",
   category: "developer-tools",
   icon: "Braces",
   isFeatured: true,
@@ -43,7 +43,7 @@ export const jsonFormatterTool: ToolConfig<JsonInput, JsonOutput> = {
     metaTitle: "JSON Formatter & Validator - Free Online Tool",
     metaDescription:
       "Format, validate and beautify JSON online for free. Instant syntax error detection and customizable indentation.",
-    keywords: ["json formatter", "json validator", "beautify json", "json pretty print"],
+    keywords: ["json formatter", "json validator", "beautify json", "json pretty print", "json formatter online", "minify json"],
   },
   inputSchema: jsonInputSchema,
   compute: computeJson,
@@ -56,6 +56,14 @@ export const jsonFormatterTool: ToolConfig<JsonInput, JsonOutput> = {
     {
       question: "What happens if my JSON is invalid?",
       answer: "You'll see the exact parser error, including the position of the problem, so you can fix it fast.",
+    },
+    {
+      question: "Can I minify JSON instead of formatting it?",
+      answer: "Yes -- set indent to 0 (\"Minified\" option) to collapse the JSON to a single compact line, useful for reducing payload size before sending over a network.",
+    },
+    {
+      question: "What's the difference between formatting and validating?",
+      answer: "Formatting re-serializes valid JSON with consistent indentation. Validating just checks whether the syntax is correct without changing anything -- use the dedicated JSON Validator if you only need a yes/no check.",
     },
   ],
   relatedToolSlugs: ["json-validator", "base64-encode"],
