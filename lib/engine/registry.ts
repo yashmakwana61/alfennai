@@ -42,6 +42,7 @@ import { salaryHikeTool } from "@/config/tools/salary-hike-calculator.config";
 import { pfCalculatorTool } from "@/config/tools/pf-calculator.config";
 import { gratuityCalculatorTool } from "@/config/tools/gratuity-calculator.config";
 import { hraCalculatorTool } from "@/config/tools/hra-calculator.config";
+import { professionalTaxCalculatorTool } from "@/config/tools/professional-tax-calculator.config";
 
 /**
  * TOOL_REGISTRY is the only place new tools get wired in.
@@ -93,6 +94,7 @@ export const TOOL_REGISTRY: ToolConfig[] = [
   pfCalculatorTool,
   gratuityCalculatorTool,
   hraCalculatorTool,
+  professionalTaxCalculatorTool,
 ] as ToolConfig[];
 export const CATEGORY_REGISTRY: ToolCategory[] = [
   { slug: "calculators", name: "Calculators", description: "Fast, accurate calculators for everyday math, finance and health.", icon: "Calculator" },

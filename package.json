@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test lib/finance/salary-calculator.test.ts lib/finance/ctc-to-in-hand.test.ts lib/finance/salary-hike-calculator.test.ts lib/finance/pf-calculator.test.ts lib/finance/gratuity-calculator.test.ts lib/finance/cluster-links.test.ts lib/finance/seo-readiness.test.ts lib/finance/hra-calculator.test.ts",
+    "test": "tsx --test lib/finance/salary-calculator.test.ts lib/finance/ctc-to-in-hand.test.ts lib/finance/salary-hike-calculator.test.ts lib/finance/pf-calculator.test.ts lib/finance/gratuity-calculator.test.ts lib/finance/cluster-links.test.ts lib/finance/seo-readiness.test.ts lib/finance/hra-calculator.test.ts lib/finance/professional-tax-calculator.test.ts",
     "seo:audit": "tsx scripts/seo-audit.ts"
   },
   "dependencies": {

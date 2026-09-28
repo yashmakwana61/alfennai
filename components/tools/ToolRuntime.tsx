@@ -48,6 +48,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   "pf-calculator": () => import("@/config/tools/pf-calculator.config"),
   "percentage-calculator": () => import("@/config/tools/percentage-calculator.config"),
   "profit-calculator": () => import("@/config/tools/profit-calculator.config"),
+  "professional-tax-calculator": () => import("@/config/tools/professional-tax-calculator.config"),
   "qr-generator": () => import("@/config/tools/qr-generator.config"),
   "random-generator": () => import("@/config/tools/random-generator.config"),
   "regex-tester": () => import("@/config/tools/regex-tester.config"),
