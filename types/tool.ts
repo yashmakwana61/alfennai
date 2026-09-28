@@ -36,6 +36,23 @@ export interface ToolFormula {
   explanation: string;
 }
 
+export interface ToolContentTable {
+  headers: string[];
+  rows: string[][];
+}
+
+/**
+ * An editorial section rendered below the calculator. Optional, so tools
+ * without long-form content are unaffected. Tables use semantic <table>
+ * markup; keep rows short so they stay readable on mobile.
+ */
+export interface ToolContentSection {
+  heading: string;
+  paragraphs?: string[];
+  list?: string[];
+  table?: ToolContentTable;
+}
+
 /**
  * The single source of truth for a tool. Adding a new tool means creating
  * one of these objects and registering it in the tool registry -- nothing
@@ -60,6 +77,10 @@ export interface ToolConfig<TInput = unknown, TOutput = unknown> {
   faq: ToolFAQItem[];
   relatedToolSlugs: string[];
   exampleInput?: Partial<TInput>;
+  /** Short paragraphs shown between the header and the calculator. */
+  intro?: string[];
+  /** Editorial H2 sections shown below the calculator experience. */
+  contentSections?: ToolContentSection[];
 }
 
 export interface ToolCategory {

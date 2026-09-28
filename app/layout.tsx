@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "Free, fast, beautifully designed online tools: calculators, converters, generators and developer utilities. No sign-up required.",
   openGraph: { type: "website", siteName: SITE_NAME },
   twitter: { card: "summary_large_image" },
-  // Search Console: if you verify via the "HTML tag" method, paste the
-  // content value here (Search Console > Settings > Ownership verification
-  // > HTML tag > copy just the content="..." value). If you verify via DNS
-  // TXT record instead (recommended, and needs no code change), leave this
-  // as-is and ignore it.
-  verification: {
-    google: "REPLACE_WITH_YOUR_SEARCH_CONSOLE_HTML_TAG_CONTENT",
-  },
+  // Search Console: set the NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION environment
+  // variable to your verification token (Search Console > Settings >
+  // Ownership verification > HTML tag > copy just the content="..." value).
+  // When unset, no verification meta tag is emitted. Verifying via DNS TXT
+  // record instead (recommended) needs no code change at all.
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

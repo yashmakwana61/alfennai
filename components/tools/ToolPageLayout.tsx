@@ -30,6 +30,13 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
         <p className="mt-3 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
           {tool.shortDescription}
         </p>
+        {tool.intro && tool.intro.length > 0 && (
+          <div className="mt-4 max-w-2xl space-y-3 text-slate-600 dark:text-slate-300">
+            {tool.intro.map((paragraph, i) => (
+              <p key={i} className="leading-relaxed">{paragraph}</p>
+            ))}
+          </div>
+        )}
       </header>
 
       {/* The actual interactive tool (from the tool's own component) */}
@@ -47,6 +54,59 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
           <p key={i} className="leading-relaxed text-slate-600 dark:text-slate-300">{paragraph}</p>
         ))}
       </section>
+
+      {/* Editorial content sections */}
+      {tool.contentSections && tool.contentSections.length > 0 && (
+        <>
+          {tool.contentSections.map((section) => (
+            <section key={section.heading} className="mt-10">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
+              {section.paragraphs?.map((paragraph, i) => (
+                <p key={i} className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">{paragraph}</p>
+              ))}
+              {section.list && section.list.length > 0 && (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 leading-relaxed text-slate-600 dark:text-slate-300">
+                  {section.list.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {section.table && (
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                  <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="bg-slate-50 dark:bg-slate-800/60">
+                        {section.table.headers.map((header) => (
+                          <th key={header} scope="col" className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row, i) => (
+                        <tr key={i} className="border-t border-slate-200 dark:border-slate-800">
+                          {row.map((cell, j) => (
+                            j === 0 ? (
+                              <th key={j} scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white">
+                                {cell}
+                              </th>
+                            ) : (
+                              <td key={j} className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                                {cell}
+                              </td>
+                            )
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </section>
+          ))}
+        </>
+      )}
 
       <div className="mt-10">
         <AdSlot label="Inline ad" minHeight={120} />
