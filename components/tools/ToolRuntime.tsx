@@ -26,6 +26,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   "character-counter": () => import("@/config/tools/character-counter.config"),
   "color-picker": () => import("@/config/tools/color-picker.config"),
   "css-minifier": () => import("@/config/tools/css-minifier.config"),
+  "ctc-to-in-hand": () => import("@/config/tools/ctc-to-in-hand.config"),
   "date-difference": () => import("@/config/tools/date-difference.config"),
   "discount-calculator": () => import("@/config/tools/discount-calculator.config"),
   "emi-calculator": () => import("@/config/tools/emi-calculator.config"),

@@ -197,7 +197,7 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
         "You can use it to sanity-check a salary offer or payslip, but expect differences: real payroll applies your exact salary structure, exemptions, TDS and employer-specific components that a simplified estimate cannot reproduce.",
     },
   ],
-  relatedToolSlugs: ["percentage-calculator", "emi-calculator", "gst-calculator"],
+  relatedToolSlugs: ["ctc-to-in-hand", "emi-calculator", "percentage-calculator"],
   contentSections: [
     {
       heading: "How CTC is converted to in-hand salary",
