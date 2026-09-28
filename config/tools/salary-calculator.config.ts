@@ -203,8 +203,8 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
       heading: "How CTC is converted to in-hand salary",
       paragraphs: [
         "The conversion follows four steps: CTC becomes gross salary, employee deductions come off, estimated income tax comes off, and what remains is your take-home salary. The exact relationship depends on your salary structure, which is why two people with the same CTC can take home different amounts.",
-        "Gross salary is Basic + HRA + other allowances + bonus. If you do not enter a breakup, this calculator assumes gross salary equals your full CTC and labels that clearly as an assumption.",
-        "Take-home salary is gross salary minus employee deductions (your PF, professional tax and any other deductions) minus estimated income tax. FY 2026-27 covers salary earned from 1 April 2026 through 31 March 2027 (AY 2027-28).",
+        "Gross salary is Basic + HRA + other allowances + bonus. If you do not enter a breakup, this calculator assumes gross salary equals your full CTC and labels that clearly as an assumption. If you only know your CTC and want to understand the employer-side components first, use the [CTC to in-hand salary calculator](/tools/finance/ctc-to-in-hand).",
+        "Take-home salary is gross salary minus employee deductions (your PF, professional tax and any other deductions) minus estimated income tax. You can estimate the employee and employer PF shares separately with the [PF calculator](/tools/finance/pf-calculator). FY 2026-27 covers salary earned from 1 April 2026 through 31 March 2027 (AY 2027-28).",
         "Income tax here uses the new or old regime slabs for the selected year with the standard deduction, Section 87A rebate where applicable, and 4% cess — a simplified model, not a full tax computation.",
       ],
     },
@@ -212,7 +212,7 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
       heading: "What is CTC in salary?",
       paragraphs: [
         "CTC stands for Cost to Company: the total annual cost your employer associates with employing you.",
-        "It can include components that never reach you as monthly cash, such as employer PF contributions, gratuity and insurance. That is why CTC should not automatically be treated as your annual take-home salary.",
+        "It can include components that never reach you as monthly cash, such as employer PF contributions, gratuity (see the [gratuity calculator](/tools/finance/gratuity-calculator)) and insurance. That is why CTC should not automatically be treated as your annual take-home salary.",
       ],
     },
     {
@@ -230,7 +230,7 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
     {
       heading: "Salary calculator example",
       paragraphs: [
-        "Illustrative example using this calculator's simplified assumptions: CTC ₹12,00,000 with basic ₹6,00,000, HRA ₹3,00,000, other allowances ₹2,40,000, bonus ₹60,000, employee PF ₹72,000, professional tax ₹2,500 and no other deductions, under the new regime for FY 2026-27.",
+        "Illustrative example using this calculator's simplified assumptions: CTC ₹12,00,000 with basic ₹6,00,000, HRA ₹3,00,000, other allowances ₹2,40,000, bonus ₹60,000, employee PF ₹72,000, professional tax ₹2,500 and no other deductions, under the new regime for FY 2026-27. If this CTC follows an increment, the [salary hike calculator](/tools/finance/salary-hike-calculator) shows how the raise itself was derived.",
         `Gross annual salary ${formatINR(workedExample.grossAnnual)}. After the ${formatINR(workedExample.standardDeduction)} standard deduction, taxable income is ${formatINR(workedExample.taxableIncome)}, on which the estimated income tax is ${formatINR(workedExample.incomeTax)} after the Section 87A rebate. After ${formatINR(workedExample.employeePfAnnual)} employee PF and ${formatINR(workedExample.professionalTaxAnnual)} professional tax, the estimated annual take-home is ${formatINR(workedExample.takeHomeAnnual)} — about ${formatINR(workedExample.takeHomeMonthly)} a month.`,
       ],
     },

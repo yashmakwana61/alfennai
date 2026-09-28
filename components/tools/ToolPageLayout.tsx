@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment, type ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import type { ToolConfig, ToolCategory } from "@/types/tool";
 import { ToolRuntime } from "@/components/tools/ToolRuntime";
@@ -8,6 +9,35 @@ interface Props {
   tool: ToolConfig;
   category: ToolCategory;
   relatedTools: ToolConfig[];
+}
+
+/**
+ * Renders [label](/tools/...) inline links inside config-authored paragraphs
+ * and list items. Only site-internal /tools/ paths become links; anything
+ * else renders as plain text, so a malformed entry can never produce a
+ * broken or off-site link. FAQ answers intentionally stay plain text so the
+ * FAQPage schema always matches exactly what is shown.
+ */
+function renderInlineLinks(text: string): ReactNode {
+  const parts = text.split(/\[([^\]]+)\]\((\/tools\/[^)\s]+)\)/g);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) => {
+    const mod = i % 3;
+    if (mod === 0) return <Fragment key={i}>{part}</Fragment>;
+    if (mod === 1) {
+      const href = parts[i + 1];
+      return (
+        <Link
+          key={i}
+          href={href}
+          className="font-medium text-primary underline decoration-primary/30 underline-offset-2 hover:decoration-primary"
+        >
+          {part}
+        </Link>
+      );
+    }
+    return null;
+  });
 }
 
 export function ToolPageLayout({ tool, category, relatedTools }: Props) {
@@ -62,12 +92,12 @@ export function ToolPageLayout({ tool, category, relatedTools }: Props) {
             <section key={section.heading} className="mt-10">
               <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
               {section.paragraphs?.map((paragraph, i) => (
-                <p key={i} className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">{paragraph}</p>
+                <p key={i} className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">{renderInlineLinks(paragraph)}</p>
               ))}
               {section.list && section.list.length > 0 && (
                 <ul className="mt-3 list-disc space-y-1.5 pl-5 leading-relaxed text-slate-600 dark:text-slate-300">
                   {section.list.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{renderInlineLinks(item)}</li>
                   ))}
                 </ul>
               )}

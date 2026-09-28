@@ -195,7 +195,7 @@ export const ctcToInHandTool: ToolConfig<CtcToInHandToolInput, CtcToInHandToolOu
       heading: "How CTC is converted to in-hand salary",
       paragraphs: [
         "The conversion has two stages. First, employer-side CTC components — employer PF, gratuity provision and other employer items — are subtracted from CTC to reach your gross cash salary, the envelope your monthly pay actually comes from.",
-        "Second, employee-side deductions (your PF contribution, professional tax and any other deductions) and an estimated income tax are subtracted from gross cash salary. What remains is your estimated in-hand (take-home) salary.",
+        "Second, employee-side deductions (your PF contribution, professional tax and any other deductions) and an estimated income tax are subtracted from gross cash salary. What remains is your estimated in-hand (take-home) salary. For a broader take-home estimate built around salary breakup and both tax regimes, use the [salary calculator](/tools/finance/salary-calculator).",
       ],
     },
     {
@@ -220,15 +220,15 @@ export const ctcToInHandTool: ToolConfig<CtcToInHandToolInput, CtcToInHandToolOu
     {
       heading: "How employer PF and gratuity affect in-hand salary",
       paragraphs: [
-        "Employer PF (12% of basic up to the applicable wage ceiling) and the gratuity provision (basic × 15/26) sit inside CTC but are never paid to you as monthly cash, so both directly reduce the gross cash salary derived from a given CTC.",
-        "Your own PF contribution works the other way: it comes out of gross cash salary and further reduces take-home. The calculator keeps the two strictly separate and lets you override either amount.",
+        "Employer PF (12% of basic up to the applicable wage ceiling) and the gratuity provision (basic × 15/26) sit inside CTC but are never paid to you as monthly cash, so both directly reduce the gross cash salary derived from a given CTC. A CTC gratuity provision is not the same as the statutory payout — see the [gratuity calculator](/tools/finance/gratuity-calculator).",
+        "Your own PF contribution works the other way: it comes out of gross cash salary and further reduces take-home. The calculator keeps the two strictly separate and lets you override either amount. Estimate both sides with the [PF calculator](/tools/finance/pf-calculator).",
       ],
     },
     {
       heading: "How bonus and variable pay affect monthly salary",
       paragraphs: [
         "Annual bonus is part of CTC but is typically paid once or twice a year, not every month. Dividing it by 12 would overstate your regular monthly payslip.",
-        "This calculator therefore shows an average monthly take-home (annual ÷ 12) alongside a regular monthly figure that excludes the bonus, with the bonus kept visible as its own annual line. Monthly cash flow depends on when your employer actually pays variable compensation.",
+        "This calculator therefore shows an average monthly take-home (annual ÷ 12) alongside a regular monthly figure that excludes the bonus, with the bonus kept visible as its own annual line. Monthly cash flow depends on when your employer actually pays variable compensation. If your package changed through an increment, the [salary hike calculator](/tools/finance/salary-hike-calculator) shows how the revised salary was derived.",
       ],
     },
     {
@@ -315,7 +315,7 @@ export const ctcToInHandTool: ToolConfig<CtcToInHandToolInput, CtcToInHandToolOu
         "Real payslips reflect your employer's exact structure, exemption claims, TDS timing and bonus payout schedule. If a line differs, check the corresponding assumption — especially basic percentage, PF, gratuity and bonus.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "gratuity-calculator", "pf-calculator"],
+  relatedToolSlugs: ["salary-calculator", "pf-calculator", "gratuity-calculator", "salary-hike-calculator"],
   exampleInput: {
     annualCtc: 1200000,
     basicPct: 50,

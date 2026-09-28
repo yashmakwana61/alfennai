@@ -51,7 +51,7 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
   icon: "TrendingUp",
   isNew: true,
   seo: {
-    metaTitle: "Salary Hike Calculator - Calculate Revised Salary After Increment",
+    metaTitle: "Salary Hike Calculator - Revised Salary After Hike",
     metaDescription:
       "Free salary hike calculator for India. Calculate hike amount and revised salary in INR with monthly and annual equivalents after any percentage increment.",
     keywords: [
@@ -127,7 +127,7 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
       heading: "Salary hike vs salary increase percentage",
       paragraphs: [
         "Salary hike and salary increase percentage mean the same thing in appraisal conversations: the percentage added to your current salary. To check a percentage from two figures, divide the hike amount by the current salary and multiply by 100 — a ₹60,000 raise on ₹6,00,000 is a 10% hike.",
-        "Note that a hike percentage applies to your gross salary figure, not directly to take-home pay: deductions and taxes mean the in-hand increase is usually smaller in percentage terms.",
+        "Note that a hike percentage applies to your gross salary figure, not directly to take-home pay: deductions and taxes mean the in-hand increase is usually smaller in percentage terms. Estimate the take-home effect with the [salary calculator](/tools/finance/salary-calculator). A higher salary can also change PF contributions through the wage basis — see the [PF calculator](/tools/finance/pf-calculator).",
       ],
     },
     {
@@ -147,7 +147,9 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
         "PF, professional tax, gratuity or other deductions",
         "Bonuses, variable pay or employer contributions",
         "Exact payslip amounts — payroll timing and components vary",
-        "Take-home pay estimation (see the Salary Calculator for that)",
+        "Take-home pay estimation (the [salary calculator](/tools/finance/salary-calculator) covers that)",
+        "Revised package evaluation (the [CTC to in-hand salary calculator](/tools/finance/ctc-to-in-hand) converts a new CTC into cash compensation)",
+        "Gratuity provision changes in CTC (estimated with the [gratuity calculator](/tools/finance/gratuity-calculator))",
       ],
     },
   ],
@@ -203,6 +205,6 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
         "No. It calculates the mathematical raise only — no tax, PF, gratuity, deductions or bonuses. Your actual payslip after a hike depends on all of these.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "percentage-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator"],
   exampleInput: { currentSalary: 600000, hikePct: 10, period: "annual" },
 };

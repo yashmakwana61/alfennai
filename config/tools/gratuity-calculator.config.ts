@@ -77,7 +77,7 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
   seo: {
     metaTitle: "Gratuity Calculator India - Calculate Your Gratuity",
     metaDescription:
-      "Calculate estimated gratuity in India using monthly wage and years of service. Understand the 15/26 formula, service eligibility assumptions, and gratuity calculation under current rules.",
+      "Calculate estimated gratuity in India from monthly wage and years of service. 15/26 formula, eligibility assumptions and current rules.",
     keywords: [
       "gratuity calculator india",
       "gratuity calculator",
@@ -128,7 +128,7 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
     {
       heading: "What Monthly Wage Should You Use?",
       paragraphs: [
-        "Use the monthly wage relevant to gratuity under the applicable wage definition — not automatically your Basic Salary label, gross salary, or CTC. Payroll labels differ between employers, and the statutory definition of wages can include or exclude components differently.",
+        "Use the monthly wage relevant to gratuity under the applicable wage definition — not automatically your Basic Salary label, gross salary, or CTC. Payroll labels differ between employers, and the statutory definition of wages can include or exclude components differently. PF uses its own wage and rate rules — see the [PF calculator](/tools/finance/pf-calculator).",
         "If you are unsure which figure your employer treats as gratuity wages, check your appointment letter or payroll records rather than guessing from CTC.",
       ],
     },
@@ -142,8 +142,8 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
     {
       heading: "Gratuity and CTC: What Is the Difference?",
       paragraphs: [
-        "Many offer letters show an annual gratuity provision inside CTC, but that provision is an employer's estimated yearly allocation — not the statutory payout, which is computed once from last-drawn wages and service at exit.",
-        "Never calculate statutory gratuity directly from CTC: CTC mixes cash salary with employer-side provisions that are not gratuity wages.",
+        "Many offer letters show an annual gratuity provision inside CTC, but that provision is an employer's estimated yearly allocation — not the statutory payout, which is computed once from last-drawn wages and service at exit. Walk the full CTC-to-cash bridge with the [CTC to in-hand salary calculator](/tools/finance/ctc-to-in-hand).",
+        "Never calculate statutory gratuity directly from CTC: CTC mixes cash salary with employer-side provisions that are not gratuity wages. For the broader salary and take-home picture, use the [salary calculator](/tools/finance/salary-calculator).",
       ],
     },
     {
@@ -163,6 +163,7 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
         "No statutory maximum cap is applied — verify the currently notified ceiling.",
         "The wage you enter is assumed to be the gratuity-relevant wage.",
         "Better contractual terms, awards or settlements are modelled only if you enable them.",
+        "A salary change does not automatically change gratuity the same way — increments are estimated with the [salary hike calculator](/tools/finance/salary-hike-calculator), while gratuity follows its own wage and service rules.",
         "Framework described is the Code on Social Security, 2020 position applicable from 21 November 2025.",
       ],
     },
@@ -219,7 +220,7 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
         "No. It is a mathematical estimate under stated assumptions. Actual entitlement depends on your employment terms, service records and the applicable law — verify with your employer or a legal advisor.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "salary-hike-calculator"],
   exampleInput: {
     monthlyWage: 50000,
     completedYears: 7,

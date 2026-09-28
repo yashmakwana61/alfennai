@@ -73,7 +73,7 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
   seo: {
     metaTitle: "PF Calculator India - Calculate Employee & Employer PF",
     metaDescription:
-      "Free PF calculator for India. Estimate monthly employee and employer EPF contributions from PF wage, rates and wage ceiling. Simplified estimate, not an official EPFO calculation.",
+      "Free PF calculator for India. Estimate monthly employee and employer EPF contributions from PF wage, rates and wage ceiling.",
     keywords: [
       "pf calculator",
       "epf calculator",
@@ -111,8 +111,8 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
     {
       heading: "Employee PF vs employer PF",
       paragraphs: [
-        "Employee PF is deducted from your salary — it directly reduces the cash you receive each month. Employer PF is paid by your employer on top of your salary and never passes through your bank account, though it often appears inside CTC.",
-        "This calculator shows both separately so the take-home impact (your side only) is never confused with the employer's cost.",
+        "Employee PF is deducted from your salary — it directly reduces the cash you receive each month. Employer PF is paid by your employer on top of your salary and never passes through your bank account, though it often appears inside CTC — see how it fits into the full package with the [CTC to in-hand salary calculator](/tools/finance/ctc-to-in-hand).",
+        "This calculator shows both separately so the take-home impact (your side only) is never confused with the employer's cost. For the full take-home picture including income tax, use the [salary calculator](/tools/finance/salary-calculator).",
       ],
     },
     {
@@ -163,7 +163,7 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
       heading: "Why PF may differ from your salary",
       paragraphs: [
         "PF is calculated on PF wage, not on CTC or gross salary, so a large CTC with a modest basic produces a modest PF. Different employers also structure basic pay differently, and payroll policies on ceilings and voluntary contributions vary.",
-        "If your payslip PF differs from this estimate, compare the PF wage and ceiling your employer actually used against the assumptions above.",
+        "If your payslip PF differs from this estimate, compare the PF wage and ceiling your employer actually used against the assumptions above. Comparing pay before and after an increment? Calculate the raise with the [salary hike calculator](/tools/finance/salary-hike-calculator), then review the PF assumptions here.",
       ],
     },
     {
@@ -182,6 +182,7 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
       list: [
         "This is a simplified estimate, not an official EPFO calculation.",
         "Actual PF treatment depends on applicable EPF/EPS scheme rules and employer payroll policy.",
+        "PF and gratuity are separate employment-related calculations — gratuity is estimated with the [gratuity calculator](/tools/finance/gratuity-calculator).",
         "PF wage may not equal basic salary in every case.",
         "Employer-side statutory allocation may involve EPS or other components — no EPF/EPS split is modeled.",
         "No EPF interest, maturity, withdrawal or pension-benefit calculation.",
@@ -242,7 +243,7 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
         "No. It estimates monthly contributions only — no interest accumulation, maturity value, withdrawals, or EPS pension benefits.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "percentage-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "salary-hike-calculator", "gratuity-calculator"],
   exampleInput: {
     monthlyWage: 50000,
     employeeRatePct: 12,
