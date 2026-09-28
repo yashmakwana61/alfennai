@@ -16,7 +16,7 @@ import {
   StatGrid,
 } from "@/components/tools/shared/Fields";
 import { PrimaryButton, SecondaryButton, LinkButton } from "@/components/tools/shared/Buttons";
-import { formatINR } from "@/lib/finance/salary-calculator";
+import { formatINR, type FinancialYear } from "@/lib/finance/salary-calculator";
 
 function toNumber(raw: string): number | null {
   if (raw.trim() === "") return 0;
@@ -46,7 +46,7 @@ export function SalaryCalculator({ tool }: { tool: ToolConfig<SalaryCalculatorIn
   const [profTax, setProfTax] = useState("");
   const [otherDed, setOtherDed] = useState("");
   const [regime, setRegime] = useState<"new" | "old">("new");
-  const [fy, setFy] = useState<"2024-25" | "2025-26">("2025-26");
+  const [fy, setFy] = useState<FinancialYear>("2026-27");
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -111,7 +111,7 @@ export function SalaryCalculator({ tool }: { tool: ToolConfig<SalaryCalculatorIn
     setProfTax("");
     setOtherDed("");
     setRegime("new");
-    setFy("2025-26");
+    setFy("2026-27");
     setError(null);
     setCopied(false);
   }
@@ -164,7 +164,8 @@ export function SalaryCalculator({ tool }: { tool: ToolConfig<SalaryCalculatorIn
           </div>
           <div>
             <FieldLabel htmlFor="fy">Financial year</FieldLabel>
-            <Select id="fy" value={fy} onChange={(e) => setFy(e.target.value as "2024-25" | "2025-26")}>
+            <Select id="fy" value={fy} onChange={(e) => setFy(e.target.value as FinancialYear)}>
+              <option value="2026-27">FY 2026-27 (AY 2027-28)</option>
               <option value="2025-26">FY 2025-26 (AY 2026-27)</option>
               <option value="2024-25">FY 2024-25 (AY 2025-26)</option>
             </Select>
@@ -310,6 +311,25 @@ export function SalaryCalculator({ tool }: { tool: ToolConfig<SalaryCalculatorIn
               {copied ? "Copied" : "Copy result"}
             </LinkButton>
           </div>
+
+          <section aria-labelledby="salary-assumptions" className="mt-5 rounded-lg border border-slate-200 px-4 py-3 dark:border-slate-700">
+            <h2 id="salary-assumptions" className="text-sm font-semibold text-slate-900 dark:text-white">
+              Calculation assumptions
+            </h2>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <li>Estimate for salaried resident individuals below 60 years of age.</li>
+              <li>Standard deduction of {formatINR(result.standardDeduction)} included as per FY {fy} ({regime === "new" ? "new" : "old"} regime).</li>
+              <li>HRA exemption and 80C, 80D and other detailed deductions are not modeled.</li>
+              <li>Professional tax is subtracted from take-home pay but not from taxable income in this simplified model.</li>
+              <li>Surcharge is not included, so results for high-income cases may differ from actual tax liability.</li>
+              <li>CTC structures vary by employer; the employer-side share is never added to take-home.</li>
+            </ul>
+            <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+              Tax rules reference official Income Tax Department publications (
+              <a href="https://www.incometax.gov.in" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">incometax.gov.in</a>
+              ). This calculator is an independent estimate and is not affiliated with or endorsed by the government.
+            </p>
+          </section>
 
           <p className="mt-4 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
             Simplified model for FY {fy}: standard deduction only, no HRA/80C exemptions, no surcharge,

@@ -19,6 +19,16 @@
  *   up to Rs 12,00,000 with marginal relief just above that level, standard
  *   deduction Rs 75,000 (unchanged); old regime unchanged from FY 2024-25.
  *   Health & education cess 4%.
+ * - FY 2026-27 (AY 2027-28): Union Budget 2026 announced NO changes to
+ *   income-tax slabs, rebate limits, standard deduction or cess; the new
+ *   Income-tax Act, 2025 (effective 1 April 2026) retains the FY 2025-26
+ *   rates. Rules below are therefore identical to FY 2025-26: new-regime
+ *   slabs nil to 4L through 30% above 24L, 87A rebate up to Rs 60,000 to
+ *   Rs 12,00,000 with marginal relief, standard deduction Rs 75,000
+ *   (new) / Rs 50,000 (old), old-regime slabs unchanged, cess 4%.
+ *   Sources: Income Tax Department rate material (incometax.gov.in /
+ *   incometaxindia.gov.in) and Union Budget 2026 announcements as reported
+ *   at the time; re-verify against the Finance Act if rates are amended.
  *
  * Simplifications (shown to the user as assumptions, not hidden):
  * - Individual below 60 years (basic exemption Rs 2,50,000, old regime).
@@ -30,7 +40,7 @@
  */
 
 export type TaxRegime = "new" | "old";
-export type FinancialYear = "2024-25" | "2025-26";
+export type FinancialYear = "2024-25" | "2025-26" | "2026-27";
 
 export interface TaxSlab {
   /** Slab upper bound (inclusive). Use Number.POSITIVE_INFINITY for the last slab. */
@@ -93,6 +103,36 @@ export const TAX_RULES_BY_FY: Record<FinancialYear, FinancialYearTaxRules> = {
   "2025-26": {
     financialYear: "2025-26",
     assessmentYear: "2026-27",
+    cessRate: 0.04,
+    newRegime: {
+      slabs: [
+        { upTo: 400000, rate: 0 },
+        { upTo: 800000, rate: 0.05 },
+        { upTo: 1200000, rate: 0.1 },
+        { upTo: 1600000, rate: 0.15 },
+        { upTo: 2000000, rate: 0.2 },
+        { upTo: 2400000, rate: 0.25 },
+        { upTo: INFINITY, rate: 0.3 },
+      ],
+      rebateLimit: 1200000,
+      marginalRelief: true,
+      standardDeduction: 75000,
+    },
+    oldRegime: {
+      slabs: [
+        { upTo: 250000, rate: 0 },
+        { upTo: 500000, rate: 0.05 },
+        { upTo: 1000000, rate: 0.2 },
+        { upTo: INFINITY, rate: 0.3 },
+      ],
+      rebateLimit: 500000,
+      marginalRelief: false,
+      standardDeduction: 50000,
+    },
+  },
+  "2026-27": {
+    financialYear: "2026-27",
+    assessmentYear: "2027-28",
     cessRate: 0.04,
     newRegime: {
       slabs: [

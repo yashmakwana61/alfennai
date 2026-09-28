@@ -29,7 +29,7 @@ const schema = z
     professionalTaxAnnual: amountField("Professional tax").optional().default(0),
     otherDeductionsAnnual: amountField("Other deductions").optional().default(0),
     regime: z.enum(["new", "old"]),
-    financialYear: z.enum(["2024-25", "2025-26"]),
+    financialYear: z.enum(["2024-25", "2025-26", "2026-27"]),
   })
   .superRefine((data, ctx) => {
     const components =
@@ -88,7 +88,7 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
   seo: {
     metaTitle: "Salary Calculator India - Monthly & Annual Take-Home Estimate",
     metaDescription:
-      "Free salary calculator for India. Estimate monthly and annual take-home pay from CTC, PF, deductions and new vs old tax regime.",
+      "Free salary calculator for India. Estimate monthly and annual take-home pay from CTC, salary breakup, PF, deductions and tax regime.",
     keywords: [
       "salary calculator india",
       "take home salary calculator",
@@ -142,6 +142,11 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
         "Gross salary is then assumed equal to your full CTC, and the result clearly labels this as an assumption. For a more accurate estimate, enter at least your basic salary breakup.",
     },
     {
+      question: "Which financial year should I select?",
+      answer:
+        "Select the financial year in which you earn the salary — for salary earned between April 2026 and March 2027, choose FY 2026-27. Tax slabs and rebate limits can change between years, so the estimate follows the rules of the year you pick.",
+    },
+    {
       question: "Does this include professional tax and PF correctly?",
       answer:
         "Employee PF and professional tax you enter are subtracted as employee deductions. The calculator keeps them separate from employer contributions, which stay inside the CTC remainder and are never added to your take-home.",
@@ -158,6 +163,6 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
     professionalTaxAnnual: 2500,
     otherDeductionsAnnual: 0,
     regime: "new",
-    financialYear: "2025-26",
+    financialYear: "2026-27",
   },
 };

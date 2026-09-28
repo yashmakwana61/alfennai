@@ -17,6 +17,7 @@ import {
   taxableIncome,
   totalDeductions,
 } from "./salary-calculator";
+import { salaryCalculatorTool } from "../../config/tools/salary-calculator.config";
 
 describe("sanitizeAmount", () => {
   it("rejects negative input", () => {
@@ -257,5 +258,186 @@ describe("invalid input never reaches outputs as NaN/Infinity", () => {
 describe("formatINR", () => {
   it("formats full Indian digit grouping", () => {
     assert.equal(formatINR(1200000), "₹12,00,000");
+  });
+});
+
+const ZERO_PARTS = { basicAnnual: 0, hraAnnual: 0, otherAllowancesAnnual: 0, bonusAnnual: 0 };
+const ZERO_DED = { employeePfAnnual: 0, professionalTaxAnnual: 0, otherDeductionsAnnual: 0 };
+
+describe("FY 2026-27 new-regime slab boundaries", () => {
+  const slabs = TAX_RULES_BY_FY["2026-27"].newRegime.slabs;
+  const cases: Array<[number, number]> = [
+    [400000, 0],
+    [800000, 20000], // (8L-4L) * 5%
+    [1200000, 60000], // 20,000 + (12L-8L) * 10%
+    [1600000, 120000], // 60,000 + (16L-12L) * 15%
+    [2000000, 200000], // 120,000 + (20L-16L) * 20%
+    [2400000, 300000], // 200,000 + (24L-20L) * 25%
+  ];
+  for (const [taxable, expected] of cases) {
+    it(`slab tax on ${taxable} is ${expected}`, () => {
+      assert.equal(slabTax(taxable, slabs), expected);
+    });
+  }
+  it("just below the 8L boundary", () => {
+    assert.ok(Math.abs(slabTax(799999, slabs) - 19999.95) < 0.01);
+  });
+  it("just above the 8L boundary", () => {
+    assert.ok(Math.abs(slabTax(800001, slabs) - 20000.1) < 0.01);
+  });
+  it("just above the top boundary", () => {
+    assert.ok(Math.abs(slabTax(2400001, slabs) - 300000.3) < 0.01);
+  });
+});
+
+describe("FY 2026-27 low income / zero tax", () => {
+  it("CTC 5L new regime: rebate wipes slab tax", () => {
+    const r = calculateSalary({
+      annualCtc: 500000,
+      components: ZERO_PARTS,
+      deductions: ZERO_DED,
+      regime: "new",
+      financialYear: "2026-27",
+    });
+    assert.equal(r.taxableIncome, 425000);
+    assert.equal(r.slabTax, 1250);
+    assert.equal(r.rebate, 1250);
+    assert.equal(r.incomeTax, 0);
+    assert.equal(r.takeHomeAnnual, 500000);
+    assert.ok(Math.abs(r.takeHomeMonthly * 12 - r.takeHomeAnnual) < 1);
+  });
+});
+
+describe("FY 2026-27 rebate threshold", () => {
+  const fy = TAX_RULES_BY_FY["2026-27"];
+  it("zero tax at and below Rs 12L taxable", () => {
+    assert.equal(incomeTax(1200000, fy, "new"), 0);
+    assert.equal(incomeTax(1199999, fy, "new"), 0);
+  });
+  it("marginal relief just above Rs 12L (tax capped at excess + cess)", () => {
+    assert.ok(Math.abs(incomeTax(1200001, fy, "new") - 1.04) < 1e-9);
+  });
+  it("cess is 4% of tax after relief", () => {
+    assert.equal(cessAmount(10000, fy.cessRate), 400);
+  });
+});
+
+describe("FY 2026-27 old regime", () => {
+  it("standard deduction is Rs 50,000 (vs 75,000 new)", () => {
+    assert.equal(taxableIncome(1000000, TAX_RULES_BY_FY["2026-27"].oldRegime), 950000);
+    assert.equal(taxableIncome(1000000, TAX_RULES_BY_FY["2026-27"].newRegime), 925000);
+  });
+  it("CTC 10L old regime", () => {
+    const r = calculateSalary({
+      annualCtc: 1000000,
+      components: ZERO_PARTS,
+      deductions: ZERO_DED,
+      regime: "old",
+      financialYear: "2026-27",
+    });
+    // (2.5L*5% + 4.5L*20%) = 102,500 + 4,100 cess.
+    assert.equal(r.incomeTax, 106600);
+    assert.equal(r.takeHomeAnnual, 893400);
+  });
+});
+
+describe("FY 2026-27 combined deductions and exact CTC breakup", () => {
+  it("PF + professional tax + other deductions; components exactly equal CTC", () => {
+    const r = calculateSalary({
+      annualCtc: 1500000,
+      components: { basicAnnual: 750000, hraAnnual: 375000, otherAllowancesAnnual: 300000, bonusAnnual: 75000 },
+      deductions: { employeePfAnnual: 90000, professionalTaxAnnual: 2500, otherDeductionsAnnual: 5000 },
+      regime: "new",
+      financialYear: "2026-27",
+    });
+    assert.equal(r.grossAnnual, 1500000);
+    assert.equal(r.grossAssumedFromCtc, false);
+    assert.equal(r.employerContributionsEstimate, 0);
+    assert.equal(r.totalEmployeeDeductions, 97500);
+    // Taxable 14.25L: 20k + 40k + 2.25L*15% = 93,750 + 3,750 cess.
+    assert.equal(r.slabTax, 93750);
+    assert.equal(r.incomeTax, 97500);
+    assert.equal(r.takeHomeAnnual, 1305000);
+    assert.equal(r.takeHomeMonthly, 108750);
+  });
+});
+
+describe("FY 2026-27 decimal income", () => {
+  it("paise survive with zero tax below the rebate limit", () => {
+    const r = calculateSalary({
+      annualCtc: 800000.75,
+      components: ZERO_PARTS,
+      deductions: ZERO_DED,
+      regime: "new",
+      financialYear: "2026-27",
+    });
+    assert.equal(r.incomeTax, 0);
+    assert.equal(r.takeHomeAnnual, 800000.75);
+  });
+});
+
+describe("FY 2026-27 high salary (surcharge not modelled)", () => {
+  it("CTC 10cr: tax is slab + 4% cess only", () => {
+    const r = calculateSalary({
+      annualCtc: 100000000,
+      components: ZERO_PARTS,
+      deductions: ZERO_DED,
+      regime: "new",
+      financialYear: "2026-27",
+    });
+    // Slab 29,557,500 + cess 1,182,300; no surcharge added.
+    assert.ok(Math.abs(r.slabTax - 29557500) < 1);
+    assert.ok(Math.abs(r.incomeTax - 30739800) < 1);
+    assert.ok(Math.abs(r.takeHomeAnnual - 69260200) < 1);
+    assert.ok(Math.abs(r.takeHomeMonthly * 12 - r.takeHomeAnnual) < 1);
+  });
+});
+
+describe("FY 2026-27 matches FY 2025-26 (Budget 2026 made no changes)", () => {
+  it("identical inputs give identical results across both years", () => {
+    const base = {
+      annualCtc: 1840000,
+      components: { basicAnnual: 920000, hraAnnual: 460000, otherAllowancesAnnual: 360000, bonusAnnual: 100000 },
+      deductions: { employeePfAnnual: 110400, professionalTaxAnnual: 2500, otherDeductionsAnnual: 12000 },
+      regime: "new" as const,
+    };
+    assert.deepEqual(
+      calculateSalary({ ...base, financialYear: "2026-27" }),
+      calculateSalary({ ...base, financialYear: "2025-26" })
+    );
+  });
+});
+
+describe("input validation at the tool schema boundary", () => {
+  const valid = {
+    annualCtc: 1200000,
+    basicAnnual: 600000,
+    hraAnnual: 300000,
+    otherAllowancesAnnual: 240000,
+    bonusAnnual: 60000,
+    employeePfAnnual: 72000,
+    professionalTaxAnnual: 2500,
+    otherDeductionsAnnual: 0,
+    regime: "new" as const,
+    financialYear: "2026-27" as const,
+  };
+  it("accepts the valid example input", () => {
+    assert.equal(salaryCalculatorTool.inputSchema.safeParse(valid).success, true);
+  });
+  it("rejects salary components exceeding CTC", () => {
+    const parsed = salaryCalculatorTool.inputSchema.safeParse({ ...valid, bonusAnnual: 600000 });
+    assert.equal(parsed.success, false);
+  });
+  it("rejects deductions exceeding gross", () => {
+    const parsed = salaryCalculatorTool.inputSchema.safeParse({ ...valid, otherDeductionsAnnual: 2000000 });
+    assert.equal(parsed.success, false);
+  });
+  it("rejects negative CTC", () => {
+    const parsed = salaryCalculatorTool.inputSchema.safeParse({ ...valid, annualCtc: -100 });
+    assert.equal(parsed.success, false);
+  });
+  it("rejects an unknown financial year", () => {
+    const parsed = salaryCalculatorTool.inputSchema.safeParse({ ...valid, financialYear: "2027-28" });
+    assert.equal(parsed.success, false);
   });
 });
