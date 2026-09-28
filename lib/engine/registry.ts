@@ -40,6 +40,7 @@ import { salaryCalculatorTool } from "@/config/tools/salary-calculator.config";
 import { ctcToInHandTool } from "@/config/tools/ctc-to-in-hand.config";
 import { salaryHikeTool } from "@/config/tools/salary-hike-calculator.config";
 import { pfCalculatorTool } from "@/config/tools/pf-calculator.config";
+import { gratuityCalculatorTool } from "@/config/tools/gratuity-calculator.config";
 
 /**
  * TOOL_REGISTRY is the only place new tools get wired in.
@@ -89,6 +90,7 @@ export const TOOL_REGISTRY: ToolConfig[] = [
   ctcToInHandTool,
   salaryHikeTool,
   pfCalculatorTool,
+  gratuityCalculatorTool,
 ] as ToolConfig[];
 export const CATEGORY_REGISTRY: ToolCategory[] = [
   { slug: "calculators", name: "Calculators", description: "Fast, accurate calculators for everyday math, finance and health.", icon: "Calculator" },
