@@ -43,6 +43,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   "margin-calculator": () => import("@/config/tools/margin-calculator.config"),
   "markdown-preview": () => import("@/config/tools/markdown-preview.config"),
   "password-generator": () => import("@/config/tools/password-generator.config"),
+  "pf-calculator": () => import("@/config/tools/pf-calculator.config"),
   "percentage-calculator": () => import("@/config/tools/percentage-calculator.config"),
   "profit-calculator": () => import("@/config/tools/profit-calculator.config"),
   "qr-generator": () => import("@/config/tools/qr-generator.config"),
