@@ -10,7 +10,7 @@ export function buildToolMetadata(tool: ToolConfig): Metadata {
   const ogImage = tool.seo.ogImage ?? `${SITE_URL}/api/og?title=${encodeURIComponent(tool.title)}`;
 
   return {
-    title: `${tool.seo.metaTitle} | ${SITE_NAME}`,
+    title: tool.seo.metaTitle,
     description: tool.seo.metaDescription,
     keywords: tool.seo.keywords,
     alternates: { canonical: url },
@@ -35,7 +35,7 @@ export function buildToolMetadata(tool: ToolConfig): Metadata {
 export function buildCategoryMetadata(category: ToolCategory): Metadata {
   const url = `${SITE_URL}/tools/${category.slug}`;
   return {
-    title: `${category.name} - Free Online ${category.name} | ${SITE_NAME}`,
+    title: `${category.name} - Free Online ${category.name}`,
     description: category.description,
     alternates: { canonical: url },
     openGraph: {
@@ -51,7 +51,7 @@ export function buildCategoryMetadata(category: ToolCategory): Metadata {
 export function buildAgentMetadata(agent: AgentConfig): Metadata {
   const url = `${SITE_URL}/agents/${agent.industry}/${agent.slug}`;
   return {
-    title: `${agent.seo.metaTitle} | ${SITE_NAME}`,
+    title: agent.seo.metaTitle,
     description: agent.seo.metaDescription,
     keywords: agent.seo.keywords,
     alternates: { canonical: url },
@@ -74,7 +74,7 @@ export function buildAgentMetadata(agent: AgentConfig): Metadata {
 export function buildAgentIndustryMetadata(industry: AgentIndustry): Metadata {
   const url = `${SITE_URL}/agents/${industry.slug}`;
   return {
-    title: `${industry.name} AI Agents - Free Downloadable Workflows | ${SITE_NAME}`,
+    title: `${industry.name} AI Agents - Free Downloadable Workflows`,
     description: industry.description,
     alternates: { canonical: url },
     openGraph: { title: industry.name, description: industry.description, url, siteName: SITE_NAME, type: "website" },
