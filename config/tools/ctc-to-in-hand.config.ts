@@ -315,7 +315,7 @@ export const ctcToInHandTool: ToolConfig<CtcToInHandToolInput, CtcToInHandToolOu
         "Real payslips reflect your employer's exact structure, exemption claims, TDS timing and bonus payout schedule. If a line differs, check the corresponding assumption — especially basic percentage, PF, gratuity and bonus.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "percentage-calculator", "emi-calculator"],
+  relatedToolSlugs: ["salary-calculator", "salary-hike-calculator", "percentage-calculator"],
   exampleInput: {
     annualCtc: 1200000,
     basicPct: 50,
