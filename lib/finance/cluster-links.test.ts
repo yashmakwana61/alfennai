@@ -12,6 +12,7 @@ const CLUSTER_SLUGS = [
   "salary-hike-calculator",
   "pf-calculator",
   "gratuity-calculator",
+  "hra-calculator",
 ];
 
 const LINK_PATTERN = /\[([^\]]+)\]\((\/tools\/[^)\s]+)\)/g;
@@ -41,8 +42,8 @@ function collectLinks(tool: ToolConfig): Array<{ label: string; href: string }> 
 
 describe("finance cluster metadata uniqueness", () => {
   const tools = CLUSTER_SLUGS.map((slug) => getToolBySlug(slug));
-  it("all five cluster tools exist", () => {
-    assert.equal(tools.filter(Boolean).length, 5);
+  it("all six cluster tools exist", () => {
+    assert.equal(tools.filter(Boolean).length, 6);
   });
   it("titles are unique", () => {
     const titles = tools.map((t) => t!.title);
@@ -100,11 +101,12 @@ describe("finance cluster related tools", () => {
   });
   it("salary cluster forms the expected graph", () => {
     const expected: Record<string, string[]> = {
-      "salary-calculator": ["ctc-to-in-hand", "pf-calculator", "salary-hike-calculator", "gratuity-calculator"],
-      "ctc-to-in-hand": ["salary-calculator", "pf-calculator", "gratuity-calculator", "salary-hike-calculator"],
-      "salary-hike-calculator": ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator"],
-      "pf-calculator": ["salary-calculator", "ctc-to-in-hand", "salary-hike-calculator", "gratuity-calculator"],
-      "gratuity-calculator": ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "salary-hike-calculator"],
+      "salary-calculator": ["ctc-to-in-hand", "pf-calculator", "salary-hike-calculator", "gratuity-calculator", "hra-calculator"],
+      "ctc-to-in-hand": ["salary-calculator", "pf-calculator", "gratuity-calculator", "salary-hike-calculator", "hra-calculator"],
+      "salary-hike-calculator": ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator", "hra-calculator"],
+      "pf-calculator": ["salary-calculator", "ctc-to-in-hand", "salary-hike-calculator", "gratuity-calculator", "hra-calculator"],
+      "gratuity-calculator": ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "salary-hike-calculator", "hra-calculator"],
+      "hra-calculator": ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator", "salary-hike-calculator"],
     };
     for (const [slug, related] of Object.entries(expected)) {
       assert.deepEqual(getToolBySlug(slug)!.relatedToolSlugs, related);

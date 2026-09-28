@@ -220,7 +220,7 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
         "No. It is a mathematical estimate under stated assumptions. Actual entitlement depends on your employment terms, service records and the applicable law — verify with your employer or a legal advisor.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "salary-hike-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "salary-hike-calculator", "hra-calculator"],
   exampleInput: {
     monthlyWage: 50000,
     completedYears: 7,

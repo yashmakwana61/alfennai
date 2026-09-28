@@ -32,6 +32,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   "emi-calculator": () => import("@/config/tools/emi-calculator.config"),
   "gst-calculator": () => import("@/config/tools/gst-calculator.config"),
   "gratuity-calculator": () => import("@/config/tools/gratuity-calculator.config"),
+  "hra-calculator": () => import("@/config/tools/hra-calculator.config"),
   "hash-generator": () => import("@/config/tools/hash-generator.config"),
   "html-formatter": () => import("@/config/tools/html-formatter.config"),
   "javascript-minifier": () => import("@/config/tools/javascript-minifier.config"),

@@ -205,6 +205,6 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
         "No. It calculates the mathematical raise only — no tax, PF, gratuity, deductions or bonuses. Your actual payslip after a hike depends on all of these.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "pf-calculator", "gratuity-calculator", "hra-calculator"],
   exampleInput: { currentSalary: 600000, hikePct: 10, period: "annual" },
 };

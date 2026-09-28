@@ -243,7 +243,7 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
         "No. It estimates monthly contributions only — no interest accumulation, maturity value, withdrawals, or EPS pension benefits.",
     },
   ],
-  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "salary-hike-calculator", "gratuity-calculator"],
+  relatedToolSlugs: ["salary-calculator", "ctc-to-in-hand", "salary-hike-calculator", "gratuity-calculator", "hra-calculator"],
   exampleInput: {
     monthlyWage: 50000,
     employeeRatePct: 12,
