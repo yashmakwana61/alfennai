@@ -48,6 +48,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   "random-generator": () => import("@/config/tools/random-generator.config"),
   "regex-tester": () => import("@/config/tools/regex-tester.config"),
   "remove-duplicate-lines": () => import("@/config/tools/remove-duplicate-lines.config"),
+  "salary-calculator": () => import("@/config/tools/salary-calculator.config"),
   "slug-generator": () => import("@/config/tools/slug-generator.config"),
   "text-cleaner": () => import("@/config/tools/text-cleaner.config"),
   "time-calculator": () => import("@/config/tools/time-calculator.config"),

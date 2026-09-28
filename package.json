@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test": "tsx --test lib/finance/salary-calculator.test.ts",
     "seo:audit": "tsx scripts/seo-audit.ts"
   },
   "dependencies": {

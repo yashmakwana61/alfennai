@@ -36,6 +36,7 @@ import { loremIpsumGeneratorTool } from "@/config/tools/lorem-ipsum.config";
 import { randomGeneratorTool } from "@/config/tools/random-generator.config";
 import { colorPickerTool } from "@/config/tools/color-picker.config";
 import { qrGeneratorTool } from "@/config/tools/qr-generator.config";
+import { salaryCalculatorTool } from "@/config/tools/salary-calculator.config";
 
 /**
  * TOOL_REGISTRY is the only place new tools get wired in.
@@ -81,8 +82,8 @@ export const TOOL_REGISTRY: ToolConfig[] = [
   randomGeneratorTool,
   colorPickerTool,
   qrGeneratorTool,
+  salaryCalculatorTool,
 ] as ToolConfig[];
-
 export const CATEGORY_REGISTRY: ToolCategory[] = [
   { slug: "calculators", name: "Calculators", description: "Fast, accurate calculators for everyday math, finance and health.", icon: "Calculator" },
   { slug: "converters", name: "Converters", description: "Convert between units, formats and file types.", icon: "ArrowLeftRight" },
