@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: { default: `${SITE_NAME} - Free Online Tools`, template: `%s | ${SITE_NAME}` },
   description:
     "Free, fast, beautifully designed online tools: calculators, converters, generators and developer utilities. No sign-up required.",
+  // Default self-referencing canonical for pages without their own (page-level
+  // canonicals, e.g. tool pages, override this). Ensures every public URL has
+  // exactly one canonical even with query strings or host variants.
+  alternates: { canonical: SITE_URL },
   openGraph: { type: "website", siteName: SITE_NAME },
   twitter: { card: "summary_large_image" },
   // Search Console: set the NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION environment
