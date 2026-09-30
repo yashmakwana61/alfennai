@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Search, Moon, Sun, Menu, X } from "lucide-react";
-import { CATEGORY_REGISTRY } from "@/lib/engine/registry";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { getPopulatedCategories } from "@/lib/engine/registry";
+import { ToolSearch } from "@/components/search/ToolSearch";
 
 export function SiteHeader() {
   const [dark, setDark] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const populatedCategories = getPopulatedCategories();
 
   function toggleDark() {
     setDark((d) => {
@@ -23,19 +25,13 @@ export function SiteHeader() {
           Alfenn<span className="text-primary">AI</span>
         </Link>
 
-        <div className="hidden flex-1 max-w-md items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 md:flex dark:border-slate-800 dark:bg-slate-900">
-          <Search className="h-4 w-4 text-slate-400" />
-          <input
-            placeholder="Search 100,000+ tools..."
-            className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400 dark:text-slate-200"
-          />
-        </div>
+        <ToolSearch variant="header" />
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           <Link href="/agents" className="text-sm font-medium text-slate-600 transition hover:text-primary dark:text-slate-300">
             AI Agents
           </Link>
-          {CATEGORY_REGISTRY.slice(0, 5).map((c) => (
+          {populatedCategories.slice(0, 5).map((c) => (
             <Link
               key={c.slug}
               href={`/tools/${c.slug}`}
@@ -57,6 +53,7 @@ export function SiteHeader() {
           <button
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
             className="rounded-full p-2 text-slate-500 hover:bg-slate-100 lg:hidden dark:text-slate-300 dark:hover:bg-slate-800"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -66,14 +63,20 @@ export function SiteHeader() {
 
       {mobileOpen && (
         <div className="border-t border-slate-200 px-4 py-3 lg:hidden dark:border-slate-800">
+          <div className="pb-2 md:hidden">
+            <ToolSearch variant="hero" placeholder="Search tools..." />
+          </div>
           <Link href="/agents" className="block py-2 text-sm font-medium text-primary">
             AI Agents
           </Link>
-          {CATEGORY_REGISTRY.map((c) => (
+          {populatedCategories.map((c) => (
             <Link key={c.slug} href={`/tools/${c.slug}`} className="block py-2 text-sm text-slate-600 dark:text-slate-300">
               {c.name}
             </Link>
           ))}
+          <Link href="/methodology" className="block py-2 text-sm text-slate-600 dark:text-slate-300">
+            Methodology
+          </Link>
         </div>
       )}
     </header>

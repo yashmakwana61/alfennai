@@ -49,6 +49,24 @@ export function getIndustryBySlug(slug: string): AgentIndustry | undefined {
   return AGENT_INDUSTRY_REGISTRY.find((i) => i.slug === slug);
 }
 
+/**
+ * Phase 12: separate the development registry from the public indexable
+ * surface. Industries with zero registered agents must NOT produce
+ * useful-looking indexable SEO pages. No filler agents are created to
+ * populate them.
+ */
+export function isIndustryPopulated(slug: string): boolean {
+  return AGENT_REGISTRY.some((a) => a.industry === slug);
+}
+
+export function getPopulatedIndustries(): AgentIndustry[] {
+  return AGENT_INDUSTRY_REGISTRY.filter((i) => isIndustryPopulated(i.slug));
+}
+
+export function getEmptyIndustries(): AgentIndustry[] {
+  return AGENT_INDUSTRY_REGISTRY.filter((i) => !isIndustryPopulated(i.slug));
+}
+
 export function getFeaturedAgents(): AgentConfig[] {
   return AGENT_REGISTRY.filter((a) => a.isFeatured);
 }

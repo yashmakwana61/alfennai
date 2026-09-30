@@ -262,6 +262,13 @@ export const ctcToInHandTool: ToolConfig<CtcToInHandToolInput, CtcToInHandToolOu
         "Bonus timing varies by employer; the regular monthly figure is indicative.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "Income-tax portions follow the same Income Tax Department slabs, rebates, standard deduction and 4% cess used by the [salary calculator](/tools/finance/salary-calculator) for the selected financial year. PF and gratuity portions use the EPFO 12% convention and the statutory 15/26 gratuity rate as configurable estimates — see the [PF calculator](/tools/finance/pf-calculator) and [gratuity calculator](/tools/finance/gratuity-calculator) for their sources.",
+        "This calculator is an independent estimate and is not affiliated with or endorsed by the government. Confirm your employer's CTC structure against your offer letter before relying on the result.",
+      ],
+    },
   ],
   faq: [
     {

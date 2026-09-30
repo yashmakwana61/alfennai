@@ -152,6 +152,13 @@ export const salaryHikeTool: ToolConfig<SalaryHikeToolInput, SalaryHikeToolOutpu
         "Gratuity provision changes in CTC (estimated with the [gratuity calculator](/tools/finance/gratuity-calculator))",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "A salary hike is pure arithmetic — revised salary equals current salary multiplied by one plus the hike percentage — so no government source governs the computation itself. To evaluate what a revised figure means in cash terms, use the [salary calculator](/tools/finance/salary-calculator) or the [CTC to in-hand salary calculator](/tools/finance/ctc-to-in-hand), which apply official tax and contribution rules.",
+        "This calculator is an independent mathematical estimate. Actual increments depend on your employer's appraisal, payroll components and effective date.",
+      ],
+    },
   ],
   faq: [
     {

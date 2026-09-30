@@ -18,7 +18,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { category } = await params;
   const cat = getCategoryBySlug(category);
   if (!cat) return {};
-  return buildCategoryMetadata(cat);
+  const base = buildCategoryMetadata(cat);
+  // Phase 12: empty categories are not useful landing pages -> noindex, follow.
+  const tools = getToolsByCategory(category as ToolCategorySlug);
+  if (tools.length === 0) {
+    return { ...base, robots: { index: false, follow: true } };
+  }
+  return { ...base, robots: { index: true, follow: true } };
 }
 
 export default async function CategoryPage({ params }: PageProps) {

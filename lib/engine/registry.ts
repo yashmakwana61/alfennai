@@ -126,6 +126,25 @@ export function getCategoryBySlug(slug: string): ToolCategory | undefined {
   return CATEGORY_REGISTRY.find((c) => c.slug === slug);
 }
 
+/**
+ * Phase 12: separate the development registry from the public indexable
+ * surface. An empty category (zero registered tools) must NOT be treated
+ * as a useful SEO landing page. These helpers derive the populated set so
+ * sitemap, navigation and metadata can exclude empties without deleting
+ * future category definitions.
+ */
+export function isCategoryPopulated(slug: string): boolean {
+  return TOOL_REGISTRY.some((tool) => tool.category === slug);
+}
+
+export function getPopulatedCategories(): ToolCategory[] {
+  return CATEGORY_REGISTRY.filter((c) => isCategoryPopulated(c.slug));
+}
+
+export function getEmptyCategories(): ToolCategory[] {
+  return CATEGORY_REGISTRY.filter((c) => !isCategoryPopulated(c.slug));
+}
+
 export function getRelatedTools(tool: ToolConfig): ToolConfig[] {
   return tool.relatedToolSlugs
     .map((slug) => getToolBySlug(slug))

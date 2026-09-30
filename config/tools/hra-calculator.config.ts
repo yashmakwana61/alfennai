@@ -157,6 +157,13 @@ export const hraCalculatorTool: ToolConfig<HraToolInput, HraToolOutput> = {
         "Eligibility for the exemption itself (employment, accommodation, regime) is assumed as selected, not verified.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "The exemption structure follows Section 10(13A) of the Income-tax Act as restated in current Income Tax Department material (incometax.gov.in): least of actual HRA, rent minus 10% of salary, and the 50% metro / 40% non-metro location limit, available under the old regime only.",
+        "This calculator is an independent estimate and is not affiliated with or endorsed by the government. Verify exemption claims against official guidance or a tax professional.",
+      ],
+    },
   ],
   faq: [
     {

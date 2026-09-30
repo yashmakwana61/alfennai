@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import * as Icons from "lucide-react";
-import { AGENT_INDUSTRY_REGISTRY, getFeaturedAgents } from "@/lib/engine/agent-registry";
+import { getPopulatedIndustries, getFeaturedAgents } from "@/lib/engine/agent-registry";
 import { SITE_NAME, SITE_URL } from "@/seo/metadata";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function AgentsHubPage() {
 
       <h2 className="mt-12 text-2xl font-semibold text-slate-900 dark:text-white">Browse by industry</h2>
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {AGENT_INDUSTRY_REGISTRY.map((industry) => {
+        {getPopulatedIndustries().map((industry) => {
           const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[industry.icon] ?? Icons.Bot;
           return (
             <Link

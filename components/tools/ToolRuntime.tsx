@@ -73,8 +73,7 @@ const TOOL_LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
  * component dynamically imports that one tool's config file itself. The
  * rich object is constructed entirely client-side, so it never needs to
  * cross the server/client boundary. This also means each tool page's
- * client bundle only ever loads the one tool it needs, not all 37 (or,
- * eventually, all 100,000).
+ * client bundle only ever loads the one tool it needs, not the whole registry.
  */
 export function ToolRuntime({ slug }: Props) {
   const [tool, setTool] = useState<ToolConfig | null>(null);

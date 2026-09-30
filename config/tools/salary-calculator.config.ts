@@ -258,6 +258,13 @@ export const salaryCalculatorTool: ToolConfig<SalaryCalculatorInput, SalaryCalcu
         "Actual employer salary structures vary, so payslips may differ.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "Tax slabs, Section 87A rebate limits, standard deduction amounts and the 4% health and education cess follow Income Tax Department rate material (incometax.gov.in) for FY 2024-25 through FY 2026-27, including the Finance Act 2024 and Union Budget 2025 changes carried forward where no newer amendment applies.",
+        "This calculator is an independent estimate and is not affiliated with or endorsed by the government. Verify your liability against official publications or a tax professional before filing or relying on the result.",
+      ],
+    },
   ],
   exampleInput: {
     annualCtc: 1200000,

@@ -17,7 +17,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { industry } = await params;
   const ind = getIndustryBySlug(industry);
   if (!ind) return {};
-  return buildAgentIndustryMetadata(ind);
+  const base = buildAgentIndustryMetadata(ind);
+  // Phase 12: empty industries are not useful landing pages -> noindex, follow.
+  const agents = getAgentsByIndustry(industry as AgentIndustrySlug);
+  if (agents.length === 0) {
+    return { ...base, robots: { index: false, follow: true } };
+  }
+  return { ...base, robots: { index: true, follow: true } };
 }
 
 export default async function AgentIndustryPage({ params }: PageProps) {

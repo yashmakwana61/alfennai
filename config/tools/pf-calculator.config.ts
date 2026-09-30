@@ -190,6 +190,13 @@ export const pfCalculatorTool: ToolConfig<PfToolInput, PfToolOutput> = {
         "The current-month estimate does not reconstruct FY 2026-27 months before 17 September 2026.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "Contribution rates follow EPFO material on standard 12% employee and employer contributions. The wage ceiling default of Rs 25,000 per month with effect from 17 September 2026 reflects the Union Cabinet decision and Gazette Notification S.O. 5109(E) under the Code on Social Security, 2020 (Ministry of Labour and Employment).",
+        "This calculator is an independent estimate and is not affiliated with EPFO or the government. Confirm the ceiling and scheme treatment applicable to you against official EPFO or employer guidance.",
+      ],
+    },
   ],
   faq: [
     {

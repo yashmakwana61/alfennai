@@ -146,6 +146,13 @@ export const professionalTaxCalculatorTool: ToolConfig<ProfessionalTaxToolInput,
         "Self-employed, business and registration-related professional tax is out of scope.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "Each supported state's slabs and deduction schedule follow that state's official profession-tax source, recorded with the rule and shown in the result (for example, the Maharashtra GST Department rate schedule, the Karnataka Commercial Taxes portal, and the West Bengal, Gujarat, Andhra Pradesh and Telangana commercial-tax schedules), verified on 2026-09-28.",
+        "States without a verified official rule are reported as not covered rather than approximated. This calculator is an independent estimate and is not affiliated with any state government — re-verify against the state portal before payroll use.",
+      ],
+    },
   ],
   faq: [
     {

@@ -167,6 +167,13 @@ export const gratuityCalculatorTool: ToolConfig<GratuityToolInput, GratuityToolO
         "Framework described is the Code on Social Security, 2020 position applicable from 21 November 2025.",
       ],
     },
+    {
+      heading: "Sources & verification",
+      paragraphs: [
+        "The rate, rounding and eligibility model follows the Code on Social Security, 2020 (Section 53, carrying forward the Payment of Gratuity Act approach): 15 days' wages per qualifying year, monthly wage divided by 26, and only a final-year part in excess of six months rounding up. Applicability from 21 November 2025 and fixed-term treatment follow Labour Ministry FAQs.",
+        "No general statutory maximum cap is applied because no currently verified notification sets one under the Code. This calculator is an independent estimate, not legal advice — verify entitlement against your employment terms and the applicable law.",
+      ],
+    },
   ],
   faq: [
     {

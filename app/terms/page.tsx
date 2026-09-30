@@ -3,36 +3,53 @@ import { SITE_NAME, SITE_URL } from "@/seo/metadata";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: `Terms of Service for ${SITE_NAME}.`,
+  description: `Terms of Service for ${SITE_NAME} -- estimates, accuracy and acceptable use.`,
   alternates: { canonical: `${SITE_URL}/terms` },
 };
+
+const LAST_UPDATED = "September 30, 2026";
 
 export default function TermsPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">Terms of Service</h1>
-      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Last updated: {LAST_UPDATED}</p>
 
       <div className="prose prose-slate mt-8 max-w-none dark:prose-invert">
         <h2>Acceptance of terms</h2>
         <p>
-          By using {SITE_NAME} ({SITE_URL}), you agree to these Terms of Service. If you don't
-          agree, please don't use the site.
+          By using {SITE_NAME} ({SITE_URL}), you agree to these Terms of Service. If you don&apos;t
+          agree, please don&apos;t use the site.
         </p>
 
-        <h2>Use of the tools</h2>
+        <h2>Calculators are estimates</h2>
         <p>
-          Our tools are provided free of charge for personal and commercial use. You're
-          responsible for verifying results before relying on them for anything important --
-          financial, legal, medical or otherwise. Tools like the EMI/Loan/GST calculators, BMI
-          calculator, and similar are provided for general informational purposes only and are not
-          a substitute for professional financial, legal, tax or medical advice.
+          Calculators on this site — including salary, CTC to in-hand, salary hike, PF,
+          gratuity, HRA and professional tax calculators — produce estimates based on
+          simplified models of official rules, unless a specific page explicitly states
+          otherwise. Results do not constitute professional financial, tax or legal advice.
+        </p>
+        <p>
+          Tax slabs, rebates, wage ceilings, gratuity rules and state professional-tax
+          schedules can change. You should verify regulated financial and tax rules against
+          official sources (such as the Income Tax Department, EPFO, the Ministry of Labour
+          &amp; Employment, or the relevant state commercial-tax department) or a qualified
+          professional before relying on any result for payroll, filing or employment decisions.
+        </p>
+
+        <h2>Accuracy</h2>
+        <p>
+          We work to keep formulas, rule data and explanations accurate and tested, and we
+          disclose key assumptions next to results. Even so, site content can contain errors,
+          become outdated, or differ from your employer&apos;s payroll treatment. You are
+          responsible for verifying results before relying on them for anything important —
+          financial, legal, medical or otherwise.
         </p>
 
         <h2>No warranty</h2>
         <p>
-          {SITE_NAME} is provided "as is" without warranties of any kind, express or implied. We
-          don't guarantee that calculations, conversions, or generated output will be error-free,
+          {SITE_NAME} is provided &quot;as is&quot; without warranties of any kind, express or implied. We
+          don&apos;t guarantee that calculations, conversions, or generated output will be error-free,
           uninterrupted, or fit for any particular purpose.
         </p>
 
@@ -49,11 +66,12 @@ export default function TermsPage() {
           our infrastructure, or to scrape or republish our content at scale without permission.
         </p>
 
-        <h2>Advertising</h2>
+        <h2>Advertising and third-party links</h2>
         <p>
           {SITE_NAME} may display third-party advertising (including through Google AdSense) to
-          support the free tools on this site. We don't control the specific content of
-          third-party ads.
+          support the free tools on this site. We don&apos;t control the specific content of
+          third-party ads. Links to official government sources are provided for information
+          only and do not imply affiliation or endorsement.
         </p>
 
         <h2>Changes</h2>
@@ -64,7 +82,9 @@ export default function TermsPage() {
 
         <h2>Contact</h2>
         <p>
-          Questions about these terms can be sent through our <a href="/contact">Contact page</a>.
+          Questions about these terms, or reports of incorrect calculations and outdated rules,
+          can be sent through our <a href="/contact">Contact page</a>. Please include the page
+          URL and details of the issue.
         </p>
       </div>
     </main>
