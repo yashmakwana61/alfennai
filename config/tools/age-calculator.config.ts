@@ -58,6 +58,10 @@ export const ageCalculatorTool: ToolConfig<AgeInput, AgeOutput> = {
   slug: "age-calculator",
   title: "Age Calculator",
   shortDescription: "Calculate your exact age in years, months and days from your date of birth.",
+  intro: [
+    "Enter your date of birth to get your exact age in years, months and days — plus total days lived, total weeks, and days until your next birthday.",
+    "Optionally set a comparison date to find your age on any specific day, past or future.",
+  ],
   longDescription:
     "Wondering exactly how old you are -- not just in years, but down to the month and day? This free age calculator gives you a precise breakdown instantly: enter your date of birth, and optionally a specific date to measure against, and it works out your exact age.\n\nUnlike simple \"subtract the birth year\" math, this calculator accounts for the actual number of days in each month and for leap years, so the result is genuinely accurate -- not an approximation. That matters for anything where exact age counts: eligibility checks, legal age verification, insurance forms, or just settling an argument about who's older.\n\nBeyond your age in years, months and days, you also get your total number of days lived, total weeks, and exactly how many days remain until your next birthday. All calculations happen instantly in your browser -- your birth date is never sent anywhere.",
   category: "calculators",
@@ -109,5 +113,29 @@ export const ageCalculatorTool: ToolConfig<AgeInput, AgeOutput> = {
     },
   ],
   relatedToolSlugs: ["date-difference", "time-calculator"],
+  contentSections: [
+    {
+      heading: "Worked example",
+      paragraphs: [
+        "Born 15 June 1995, measured as of 30 September 2026: 31 years, 3 months and 15 days old — 11,430 total days lived (1,632 weeks), with 258 days until the next birthday.",
+        "Leap-day birthdays work too: born 29 February 2000 and measured on the same date, the result is 26 years, 7 months and 1 day, because February 29th in leap years is counted as a real calendar day.",
+      ],
+    },
+    {
+      heading: "Age math versus eligibility",
+      paragraphs: [
+        "Age calculation here is a mathematical date calculation: full calendar difference between two dates. Whether that age qualifies you for an exam, job, visa, pension or legal requirement depends on the authority's own rules and cutoff date — which this calculator does not know.",
+        "Use the comparison date to test a cutoff: enter the authority's cutoff day (for example, “age as of 1 August”) rather than today. To measure the gap between any two dates directly, use the [date difference calculator](/tools/calculators/date-difference).",
+      ],
+    },
+    {
+      heading: "Important limitations",
+      list: [
+        "This is date arithmetic, not legal advice — eligibility always follows the applicable authority's rules.",
+        "Results depend on the comparison date; the default is today, so the same birth date gives a different answer tomorrow.",
+        "Time zones and time-of-day are not modelled — dates are treated as whole calendar days.",
+      ],
+    },
+  ],
   exampleInput: { birthDate: "1995-06-15" },
 };

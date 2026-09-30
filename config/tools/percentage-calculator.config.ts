@@ -30,6 +30,9 @@ export const percentageCalculatorTool: ToolConfig<PercentageInput, PercentageOut
   slug: "percentage-calculator",
   title: "Percentage Calculator",
   shortDescription: "Calculate percentages, percentage of a number, and percentage change.",
+  intro: [
+    "Three different questions, three different formulas — that is why percentage math goes wrong by hand. Pick the mode that matches your question: “X% of Y” for shares and discounts, “X is what percent of Y” for scores and ratios, or “percentage change” for growth and declines.",
+  ],
   longDescription:
     "Percentages come up constantly -- working out a discount, checking exam scores, comparing growth between two periods -- but the three common percentage problems each use a different formula, which is where most manual calculation mistakes happen. This calculator handles all three in one place.\n\n\"X% of Y\" answers questions like \"what is 20% of 150?\" -- useful for tips, discounts, and commission. \"X is what percent of Y\" flips that around: if you scored 42 out of 60, what percentage is that? And \"percentage change\" tells you the percent increase or decrease between an original value and a new one -- the calculation behind revenue growth, price changes, or year-over-year comparisons.\n\nJust select the calculation type, enter your two numbers, and get an instant, exact result -- no need to remember which formula applies to which situation.",
   category: "calculators",
@@ -44,12 +47,46 @@ export const percentageCalculatorTool: ToolConfig<PercentageInput, PercentageOut
   inputSchema: schema,
   compute,
   component: PercentageCalculator,
+  formulas: [
+    { label: "X% of Y", expression: "Result = (X / 100) × Y", explanation: "The share of Y that X percent represents — discounts, tips, commission." },
+    { label: "X is what percent of Y", expression: "Result = (X / Y) × 100", explanation: "The ratio of X to Y as a percentage — exam scores, completion rates." },
+    { label: "Percentage change", expression: "Result = ((Y − X) / |X|) × 100", explanation: "Relative movement from the original X to the new Y; positive means increase, negative means decrease." },
+  ],
   faq: [
-    { question: "How do I calculate percentage increase?", answer: "Use the 'percentage change' mode: enter the original value as X and the new value as Y. A positive result is an increase, negative is a decrease." },
+    { question: "How do I calculate percentage increase?", answer: "Use the 'percentage change' mode: enter the original value as X and the new value as Y. A positive result is an increase, negative is a decrease — for example, 50,000 to 57,500 is +15%." },
+    { question: "How do I calculate percentage decrease?", answer: "The same 'percentage change' mode: enter the original value first. A fall from 200 to 150 shows as −25%." },
     { question: "What's the formula for 'X is what percent of Y'?", answer: "Divide X by Y and multiply by 100: (X / Y) × 100. For example, 42 out of 60 is (42/60) × 100 = 70%." },
-    { question: "How do I find 20% of a number?", answer: "Use 'X% of Y' mode with X = 20 and Y = your number. The formula is (20/100) × Y." },
+    { question: "How do I find 20% of a number?", answer: "Use 'X% of Y' mode with X = 20 and Y = your number. The formula is (20/100) × Y — so 20% of 150 is 30." },
     { question: "Why is percentage change based on the original value, not the average?", answer: "Percentage change measures relative movement from a starting point, so it's always calculated against the original (X) value, not an average of the two -- this is the standard convention used in finance and statistics." },
+    { question: "What is the difference between percentage change and percentage difference?", answer: "Percentage change is directional and anchored to the original value (50,000 → 57,500 is +15%). Percentage difference is symmetric — it compares two values against their average with no direction — and this calculator does not compute it." },
   ],
   relatedToolSlugs: ["discount-calculator", "gst-calculator"],
+  contentSections: [
+    {
+      heading: "Worked examples",
+      table: {
+        headers: ["Mode", "Input", "Result"],
+        rows: [
+          ["X% of Y", "20% of 150", "30"],
+          ["X is what percent of Y", "42 out of 60", "70%"],
+          ["Percentage change", "50,000 to 57,500", "+15%"],
+          ["Percentage change", "200 down to 150", "−25%"],
+        ],
+      },
+    },
+    {
+      heading: "Everyday uses",
+      paragraphs: [
+        "Salary hikes, exam marks, shop discounts, business growth and price changes are all the same three patterns: a share of a number, a ratio between two numbers, or movement from an old value to a new one.",
+        "For stacked price cuts use the [discount calculator](/tools/calculators/discount-calculator), and for tax-on-price math use the [GST calculator](/tools/finance/gst-calculator) — both build on the same percentage arithmetic.",
+      ],
+    },
+    {
+      heading: "Edge cases",
+      paragraphs: [
+        "Ratios and changes need a non-zero base: asking what percent of zero, or the change from a zero starting value, has no finite answer, so enter a non-zero X or Y for those modes. Percentage change uses the absolute value of the original, so the sign of the result always reflects direction — up or down — rather than the sign of the inputs.",
+      ],
+    },
+  ],
   exampleInput: { mode: "of", x: 20, y: 150 },
 };
